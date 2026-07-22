@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Sweet Sketch, Unipessoal Lda. Construção de edifícios, remodelações e instalações técnicas em Grândola e no Alentejo Litoral. Proposta de website em duas versões.">
+<meta name="theme-color" content="#2C313B">
+<title>Sweet Sketch, Unipessoal Lda · Propostas de Website</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-construcao.jpg" fetchpriority="high">
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<style>
+/* ═══════════════════════════ TOKENS ═══════════════════════════ */
+:root{
+  --ink:#1D222A;          /* preto de marca            */
+  --ink-2:#2C313B;        /* fundo do logótipo         */
+  --ink-3:#39404C;
+  --slate:#4A555A;        /* volume secundário do logo */
+  --paper:#FFFFFF;
+  --paper-2:#F2F5F7;
+  --paper-3:#E8EDF1;
+  --line:#E1E6EA;
+  --line-d:#39404C;
+  --txt:#4E5862;
+  --txt-l:#7C8792;
+  --amber:#C0801F;        /* acento principal          */
+  --amber-l:#E5A238;
+  --amber-x:#F5C168;
+  --steel:#33719C;
+  --display:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ui:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'Cascadia Code',Consolas,monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --maxw:1180px;
+  --nav-h:78px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 20px)}
+body{margin:0;background:var(--paper-2);color:var(--txt);font-family:var(--ui);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.025em;line-height:1.06;margin:0;color:var(--ink)}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--amber-l);outline-offset:3px;border-radius:2px}
+
+.wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:28px}
+@media(max-width:600px){.wrap{padding-inline:20px}}
+
+/* eyebrow */
+.k{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+.k::before{content:"";width:26px;height:1px;background:currentColor;opacity:.6}
+.k.plain::before{display:none}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;font-family:var(--ui);font-weight:600;font-size:.93rem;letter-spacing:.01em;padding:14px 26px;border-radius:3px;border:1.5px solid transparent;cursor:pointer;background:transparent;transition:background .22s var(--ease),border-color .22s var(--ease),color .22s var(--ease),transform .22s var(--ease),box-shadow .22s var(--ease);white-space:nowrap;will-change:transform}
+.arw{transition:transform .22s var(--ease)}
+.btn:hover .arw{transform:translateX(4px)}
+.b-amber{background:var(--amber-l);border-color:var(--amber-l);color:#241703}
+.b-amber:hover{background:var(--amber-x);border-color:var(--amber-x);transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(229,162,56,.65)}
+.b-ink{background:var(--ink);border-color:var(--ink);color:#fff}
+.b-ink:hover{background:var(--ink-3);border-color:var(--ink-3);transform:translateY(-2px)}
+.b-ghost{border-color:rgba(255,255,255,.4);color:#fff}
+.b-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.b-line{border-color:var(--line);color:var(--ink);background:var(--paper)}
+.b-line:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+/* ═════════════ troca de vista: contínua, sem corte seco ═════════════ */
+#app{transition:opacity .2s var(--ease)}
+body.swapping #app{opacity:0}
+.view{display:none}
+.view.active{display:block}
+
+/* ═══════════════════════════ LOGÓTIPO ═══════════════════════════ */
+.logo{display:inline-flex;align-items:center;flex:none}
+.logo img{display:block;width:auto;height:44px}
+.logo.stacked img{height:auto;width:300px}
+.foot .logo img{height:32px}
+
+/* ═══════════════════════════ SELETOR ═══════════════════════════ */
+#v-chooser{background:var(--paper-2)}
+.ch-top{position:relative;background:var(--ink-2);color:#fff;overflow:hidden;padding:66px 0 130px}
+.ch-top::before{content:"";position:absolute;inset:0;background:
+   radial-gradient(90% 120% at 82% -10%,rgba(229,162,56,.20),transparent 58%),
+   radial-gradient(70% 90% at 8% 110%,rgba(51,113,156,.22),transparent 60%)}
+.ch-top .wrap{position:relative;z-index:2;text-align:center}
+.ch-top .k{color:var(--amber-x);justify-content:center}
+.ch-top h1{color:#fff;font-size:clamp(2.05rem,5.2vw,3.55rem);margin:20px auto 0;max-width:800px;text-wrap:balance}
+.ch-top h1 em{font-style:normal;color:var(--amber-x)}
+.ch-top .sub{margin:20px auto 0;max-width:600px;color:#C7CFD8;font-size:1.08rem}
+.ch-logo{margin-bottom:30px}
+
+.ch-rot{margin:34px auto 0;max-width:700px;min-height:64px;display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap}
+.ch-rot .tag{font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#241703;background:var(--amber-x);padding:6px 12px;border-radius:2px;white-space:nowrap}
+.ch-rot .txt{font-size:1.02rem;color:#E3E8ED;text-align:left;max-width:520px}
+.ch-fade{transition:opacity .42s var(--ease),transform .42s var(--ease)}
+.ch-fade.out{opacity:0;transform:translateY(-7px)}
+@media(max-width:620px){.ch-rot{flex-direction:column;gap:10px}.ch-rot .txt{text-align:center;font-size:.97rem}}
+.ch-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
+.ch-dots i{width:7px;height:7px;border-radius:9px;background:rgba(255,255,255,.28);transition:width .35s var(--ease),background .35s var(--ease);cursor:pointer}
+.ch-dots i.on{background:var(--amber-x);width:24px}
+
+.ch-cards{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:-90px;padding-bottom:80px;position:relative;z-index:3;align-items:stretch}
+@media(max-width:860px){.ch-cards{grid-template-columns:1fr;margin-top:-70px}}
+.ch-card{display:flex;flex-direction:column;border-radius:9px;overflow:hidden;position:relative;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 70px -40px rgba(29,34,42,.5);transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+.ch-card:hover{transform:translateY(-6px);box-shadow:0 44px 90px -40px rgba(29,34,42,.55)}
+.ch-card.prem{background:var(--ink-2);border-color:#3B424E;box-shadow:0 30px 70px -38px rgba(44,49,59,.9)}
+.ch-prev{position:relative;aspect-ratio:16/7;overflow:hidden;background:var(--ink)}
+.ch-prev img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.ch-card:hover .ch-prev img{transform:scale(1.05)}
+.ch-prev::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,24,31,.86),rgba(20,24,31,.12) 65%)}
+.ch-prev .lab{position:absolute;left:16px;bottom:13px;z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.ch-tag{position:absolute;top:13px;right:15px;z-index:3;font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:2px;color:#241703;background:var(--amber-x)}
+.ch-card:not(.prem) .ch-tag{color:#fff;background:rgba(29,34,42,.82);backdrop-filter:blur(4px)}
+.ch-body{padding:32px 34px 34px;display:flex;flex-direction:column;flex:1}
+.ch-pn{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+.ch-card.prem .ch-pn{color:var(--amber-x)}
+.ch-price{display:flex;align-items:baseline;gap:7px;margin-top:13px}
+.ch-price .amt{font-family:var(--display);font-weight:700;font-size:3.4rem;line-height:1;letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
+.ch-price .cur{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--ink)}
+.ch-price .per{font-family:var(--mono);font-size:.63rem;letter-spacing:.06em;margin-left:5px;color:var(--txt-l)}
+.ch-card.prem .ch-price .amt,.ch-card.prem .ch-price .cur{color:#F4F6F8}
+.ch-tl{margin-top:14px;font-weight:600;font-size:1.05rem;color:var(--ink)}
+.ch-card.prem .ch-tl{color:#F4F6F8}
+.ch-card ul{list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;flex:1}
+.ch-card.prem ul{border-top-color:#3B424E}
+.ch-card li{display:flex;gap:11px;font-size:.91rem;color:var(--txt)}
+.ch-card.prem li{color:#BAC2CB}
+.ch-card li svg{flex:none;margin-top:5px;color:var(--amber)}
+.ch-card.prem li svg{color:var(--amber-x)}
+.ch-open{margin-top:24px;width:100%;padding:16px}
+
+/* ═══════════════════════════ BARRA DE DEMO ═══════════════════════════ */
+.demobar{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 22px;background:var(--ink);color:#fff;flex-wrap:wrap}
+.demobar .side{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.demobar .mini{font-size:.78rem;font-weight:500;padding:8px 15px;border:1px solid #444C58;border-radius:3px;cursor:pointer;background:transparent;color:#EDF0F3;transition:border-color .2s,background .2s}
+.demobar .mini:hover{border-color:var(--amber-l);background:rgba(229,162,56,.1)}
+.demobar .mini.sw{color:var(--amber-x);border-color:rgba(229,162,56,.45)}
+.demobar .pill{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;padding:6px 12px;border-radius:2px;color:#C7CFD8;border:1px solid #3A424E}
+@media(max-width:640px){.demobar{padding:9px 16px;font-size:.9em}.demobar .pill{display:none}}
+.demonote{background:#F6EEDC;border-bottom:1px solid #E7D9BB;color:#6B5417;font-size:.8rem;padding:9px 22px;text-align:center}
+.demonote b{color:#4A3A0E;font-weight:600}
+
+/* ═══════════════════════════ NAVEGAÇÃO DO SITE ═══════════════════════════ */
+.nav{position:sticky;top:0;z-index:70;height:var(--nav-h);display:flex;align-items:center;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.6) blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .25s var(--ease)}
+.nav.stuck{box-shadow:0 10px 30px -22px rgba(29,34,42,.55)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:.92rem;font-weight:500;color:var(--txt);position:relative;padding:4px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--amber-l);transition:right .28s var(--ease)}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{right:0}
+.nav-links .cta{color:#241703;background:var(--amber-l);padding:11px 20px;border-radius:3px;font-weight:600;white-space:nowrap;transition:background .2s,transform .2s}
+.nav-links .cta::after{display:none}
+.nav-links .cta:hover{background:var(--amber-x);color:#241703;transform:translateY(-1px)}
+.nav-tel{font-family:var(--mono);font-size:.78rem;color:var(--ink);display:flex;align-items:center;gap:7px}
+.nav-tel svg{color:var(--amber)}
+@media(max-width:900px){.nav-links a:not(.cta){display:none}.nav-tel{display:none}}
+@media(max-width:560px){
+  :root{--nav-h:66px}
+  .logo img{height:32px}
+  .logo.stacked img{width:230px}
+  .nav .wrap{gap:12px}
+  .nav-links .cta{padding:10px 15px;font-size:.83rem}
+}
+
+/* ═══════════════════════════ CARROSSEL / HERO ═══════════════════════════ */
+.hero{position:relative;height:clamp(520px,80vh,720px);overflow:hidden;background:var(--ink)}
+.hero .slide{position:absolute;inset:0;opacity:0;transition:opacity .95s var(--ease);will-change:opacity;pointer-events:none}
+.hero .slide.on{opacity:1;pointer-events:auto}
+.hero .ph{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.06);transition:transform 7.5s linear;will-change:transform}
+.hero .slide.on .ph{transform:scale(1)}
+.hero .slide::after{content:"";position:absolute;inset:0;background:
+   linear-gradient(96deg,rgba(18,22,28,.9) 2%,rgba(18,22,28,.62) 46%,rgba(18,22,28,.18) 100%),
+   linear-gradient(0deg,rgba(18,22,28,.8),transparent 55%)}
+.hero .content{position:relative;z-index:3;max-width:var(--maxw);margin:0 auto;padding:0 28px;height:100%;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:600px){.hero .content{padding:0 20px}}
+.hero .content .k{color:var(--amber-x)}
+.hero h1{color:#fff;font-size:clamp(2.15rem,5.6vw,4.3rem);max-width:15ch;margin-top:20px;letter-spacing:-.035em;text-wrap:balance;text-shadow:0 3px 40px rgba(0,0,0,.4)}
+.hero .sub{color:#DCE2E8;max-width:47ch;margin-top:22px;font-size:clamp(1rem,1.7vw,1.2rem);text-shadow:0 1px 16px rgba(0,0,0,.5)}
+.hero .row{display:flex;gap:13px;flex-wrap:wrap;margin-top:34px}
+.hero .cdots{position:absolute;left:0;right:0;bottom:26px;z-index:5;display:flex;gap:9px;justify-content:center}
+.hero .cdots i{width:10px;height:10px;border-radius:20px;background:rgba(255,255,255,.38);cursor:pointer;transition:width .35s var(--ease),background .35s var(--ease)}
+.hero .cdots i.on{background:var(--amber-x);width:30px}
+.hero .cnav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(18,22,28,.34);color:#fff;cursor:pointer;font-size:1.6rem;line-height:1;display:grid;place-items:center;backdrop-filter:blur(5px);transition:background .2s,border-color .2s}
+.hero .cnav:hover{background:rgba(18,22,28,.7);border-color:#fff}
+.hero .cprev{left:20px}.hero .cnext{right:20px}
+.hero .prog{position:absolute;left:0;bottom:0;z-index:5;height:3px;background:var(--amber-x);width:0}
+.hero .prog.run{transition:width 6s linear}
+@media(max-width:720px){.hero .cnav{display:none}}
+
+/* ═══════════════════════════ FAIXA DE CONFIANÇA ═══════════════════════════ */
+.trust{background:var(--paper);border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0}
+.trust .track{display:flex;width:max-content;animation:marq 34s linear infinite}
+.trust .track:hover{animation-play-state:paused}
+.trust span{display:inline-flex;align-items:center;gap:34px;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-l);padding-right:34px;white-space:nowrap}
+.trust span::after{content:"◆";color:var(--amber);font-size:.55rem}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════ ESTATÍSTICAS ═══════════════════════════ */
+.stats{position:relative;background:var(--ink-2);overflow:hidden}
+.stats::before{content:"";position:absolute;inset:0;background:radial-gradient(110% 170% at 85% -25%,rgba(229,162,56,.2),transparent 58%)}
+.stats .in{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:42px 26px;border-left:1px solid #3A424E}
+.stat:first-child{border-left:0}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,4.4vw,3.3rem);letter-spacing:-.04em;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
+.stat .n em{font-style:normal;color:var(--amber-x)}
+.stat .n.word{font-size:clamp(1.6rem,3.1vw,2.3rem);letter-spacing:-.02em}
+.stat .l{margin-top:10px;font-family:var(--mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:#98A3AF}
+@media(max-width:700px){.stats .in{grid-template-columns:1fr 1fr}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid #3A424E}.stat{padding:30px 20px}}
+
+/* ═══════════════════════════ SECÇÕES ═══════════════════════════ */
+.sec{padding:96px 0}
+@media(max-width:700px){.sec{padding:66px 0}}
+.sec.alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec.tint{background:linear-gradient(180deg,var(--paper-2),var(--paper-3));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sh{max-width:640px;margin-bottom:52px}
+.sh.mid{margin-inline:auto;text-align:center}
+.sh.mid .k{justify-content:center}
+.sh h2{font-size:clamp(1.85rem,3.9vw,2.85rem);margin-top:16px;text-wrap:balance}
+.sh p{margin-top:16px;font-size:1.03rem}
+.sh-row{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:46px;flex-wrap:wrap}
+.sh-row .sh{margin-bottom:0}
+
+/* serviços */
+.serv{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:940px){.serv{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.serv{grid-template-columns:1fr}}
+.scard{position:relative;display:block;border-radius:7px;overflow:hidden;background:var(--ink);min-height:340px;isolation:isolate;transition:transform .34s var(--ease),box-shadow .34s var(--ease)}
+.scard:hover{transform:translateY(-6px);box-shadow:0 30px 56px -34px rgba(29,34,42,.6)}
+.scard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .8s var(--ease)}
+.scard:hover img{transform:scale(1.08)}
+.scard::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,rgba(18,22,28,.94) 8%,rgba(18,22,28,.52) 52%,rgba(18,22,28,.15) 100%)}
+.scard .in{position:relative;z-index:2;height:100%;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 24px}
+.scard .sn{font-family:var(--mono);font-size:.74rem;font-weight:500;color:var(--amber-x);letter-spacing:.14em}
+.scard h3{color:#fff;font-size:1.2rem;margin:11px 0 8px}
+.scard p{font-size:.9rem;color:#C3CBD4}
+.scard .go{margin-top:15px;font-family:var(--mono);font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber-x);display:inline-flex;align-items:center;gap:7px}
+
+/* portefólio */
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:28px}
+.fbtn{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 17px;border:1px solid var(--line);border-radius:2px;background:var(--paper);color:var(--txt);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.fbtn:hover{border-color:var(--ink);color:var(--ink)}
+.fbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.obras{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:940px){.obras{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.obras{grid-template-columns:1fr}}
+.obra{border-radius:7px;overflow:hidden;background:var(--paper);border:1px solid var(--line);transition:transform .32s var(--ease),box-shadow .32s var(--ease),border-color .32s var(--ease),opacity .3s var(--ease)}
+.obra:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:0 28px 52px -34px rgba(29,34,42,.5)}
+.obra.hide{display:none}
+.oimg{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--paper-3)}
+.oimg img{width:100%;height:100%;object-fit:cover;transition:transform .75s var(--ease)}
+.obra:hover .oimg img{transform:scale(1.07)}
+.oimg .badge{position:absolute;top:11px;left:11px;z-index:2;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(18,22,28,.62);border:1px solid rgba(255,255,255,.2);padding:4px 9px;border-radius:2px;backdrop-filter:blur(4px)}
+.oimg .ov{position:absolute;inset:0;z-index:2;display:flex;align-items:flex-end;padding:15px;opacity:0;background:linear-gradient(0deg,rgba(18,22,28,.82),transparent 58%);transition:opacity .3s var(--ease)}
+.obra:hover .ov{opacity:1}
+.oimg .ov span{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--amber-x)}
+.ocap{padding:16px 18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ocap b{color:var(--ink);font-family:var(--display);font-weight:600;font-size:.98rem}
+.ocap span{font-family:var(--mono);font-size:.63rem;color:var(--txt-l);white-space:nowrap}
+
+/* antes / depois */
+.ba{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid var(--line);user-select:none;touch-action:pan-y;background:var(--ink);cursor:pointer}
+/* pointer-events:none impede o arrasto nativo de imagem do browser, que cancelava o gesto */
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.ba .after{clip-path:inset(0 0 0 50%)}
+/* ao clicar a barra desliza; a arrastar acompanha o cursor sem atraso */
+.ba .after,.ba .handle{transition:clip-path .55s var(--ease),left .55s var(--ease)}
+.ba.dragging{cursor:ew-resize}
+.ba.dragging .after,.ba.dragging .handle{transition:none}
+.ba:focus-visible{outline:2px solid var(--amber-l);outline-offset:3px}
+.ba .tagA,.ba .tagB{position:absolute;top:14px;z-index:3;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(18,22,28,.66);padding:5px 11px;border-radius:2px;backdrop-filter:blur(4px);pointer-events:none}
+.ba .tagA{left:14px}.ba .tagB{right:14px}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;z-index:4;width:2px;background:#fff;box-shadow:0 0 22px rgba(0,0,0,.5);pointer-events:none}
+.ba .grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-size:1.1rem;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+.ba-note{margin-top:12px;font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;color:var(--txt-l);text-transform:uppercase}
+
+/* caso de estudo */
+.case{display:grid;grid-template-columns:1.02fr .98fr;border-radius:8px;overflow:hidden;border:1px solid var(--line)}
+@media(max-width:880px){.case{grid-template-columns:1fr}}
+.case .img{position:relative;min-height:400px;overflow:hidden;background:var(--paper-3)}
+.case .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.case .txt{padding:44px 40px;background:var(--ink-2);color:#C3CBD4}
+@media(max-width:600px){.case .txt{padding:32px 24px}}
+.case .txt h3{color:#fff;font-size:1.65rem;margin:14px 0 22px}
+.case .txt .k{color:var(--amber-x)}
+.blk{margin-bottom:18px}
+.blk b{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:#98A3AF;margin-bottom:5px}
+.blk p{font-size:.93rem;color:#C3CBD4}
+.metrics{display:flex;gap:32px;margin-top:24px;padding-top:22px;border-top:1px solid #3A424E;flex-wrap:wrap}
+.metrics .v{font-family:var(--display);font-weight:700;font-size:1.9rem;letter-spacing:-.03em;color:var(--amber-x);line-height:1}
+.metrics .t{margin-top:5px;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#98A3AF}
+
+/* processo */
+.proc{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media(max-width:940px){.proc{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.proc{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.proc{grid-template-columns:1fr}}
+.pstep{background:var(--paper);border:1px solid var(--line);border-radius:7px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.pstep:hover{transform:translateY(-4px);box-shadow:0 22px 44px -32px rgba(29,34,42,.5)}
+.pstep .pi{aspect-ratio:4/3;overflow:hidden;background:var(--paper-3)}
+.pstep .pi img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.pstep:hover .pi img{transform:scale(1.07)}
+.pstep .pb{padding:18px 18px 22px}
+.pstep .pn{font-family:var(--mono);font-size:.72rem;font-weight:500;color:var(--amber)}
+.pstep h4{font-size:1rem;margin:9px 0 6px}
+.pstep p{font-size:.85rem;color:var(--txt-l)}
+
+/* testemunhos */
+.tests{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:880px){.tests{grid-template-columns:1fr}}
+.test{background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:30px 28px;position:relative}
+.test::before{content:"”";position:absolute;top:6px;right:22px;font-family:var(--display);font-size:5rem;line-height:1;color:var(--paper-3)}
+.stars{color:var(--amber-l);letter-spacing:3px;margin-bottom:13px;position:relative;z-index:2}
+.test p{color:var(--txt);font-size:.96rem;position:relative;z-index:2}
+.test .who{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);font-size:.85rem}
+.test .who b{color:var(--ink)}
+.test .who span{color:var(--txt-l)}
+
+/* blog */
+.blog{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:880px){.blog{grid-template-columns:1fr}}
+.art{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--paper);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.art:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:0 26px 48px -34px rgba(29,34,42,.5)}
+.art .ai{aspect-ratio:16/9;overflow:hidden;background:var(--paper-3)}
+.art .ai img{width:100%;height:100%;object-fit:cover;transition:transform .75s var(--ease)}
+.art:hover .ai img{transform:scale(1.07)}
+.art .ab{padding:22px 24px 26px}
+.art .cat{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber)}
+.art h4{font-size:1.05rem;margin:11px 0 7px;line-height:1.28}
+.art p{font-size:.87rem;color:var(--txt-l)}
+
+/* contacto */
+.contact{background:var(--ink-2);color:#C3CBD4;position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 120% at 90% 0%,rgba(51,113,156,.22),transparent 60%)}
+.contact .wrap{position:relative;z-index:2}
+.contact .sh h2{color:#fff}
+.contact .sh p{color:#AEB8C3}
+.contact .k{color:var(--amber-x)}
+.cgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:44px}
+@media(max-width:880px){.cgrid{grid-template-columns:1fr;gap:34px}}
+.form{display:flex;flex-direction:column;gap:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.two{grid-template-columns:1fr}}
+.field label{display:block;font-family:var(--mono);font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;color:#98A3AF;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;background:#232833;border:1px solid #3A424E;border-radius:3px;padding:13px 15px;color:#F0F3F6;font-family:var(--ui);font-size:.93rem;transition:border-color .2s}
+.field input::placeholder,.field textarea::placeholder{color:#6C7887}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--amber-l)}
+.check{display:flex;gap:11px;align-items:center;font-size:.86rem;color:#AEB8C3}
+.check input{accent-color:var(--amber-l);width:17px;height:17px}
+.cinfo{display:flex;flex-direction:column;gap:16px;margin-top:20px}
+.crow{display:flex;gap:13px;font-size:.93rem;color:#C3CBD4}
+.crow svg{color:var(--amber-x);flex:none;margin-top:3px}
+.crow b{color:#fff;font-weight:600}
+.map{aspect-ratio:16/10;border:1px solid #3A424E;border-radius:6px;overflow:hidden;position:relative}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+
+/* rodapé */
+.foot{background:var(--ink);padding:46px 0;border-top:1px solid #2E3540}
+.foot .ft{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap}
+.foot .fl{font-family:var(--mono);font-size:.63rem;letter-spacing:.09em;color:#7C8792;text-transform:uppercase}
+
+/* CTA flutuante */
+.wa{position:fixed;right:18px;bottom:18px;z-index:90;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.6);transition:transform .25s var(--ease)}
+.wa:hover{transform:scale(1.08)}
+@media(max-width:760px){.wa{bottom:78px;right:14px;width:48px;height:48px}.wa svg{width:23px;height:23px}}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:88;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(29,34,42,.96);backdrop-filter:blur(12px);border-top:1px solid #3A424E}
+.sticky-cta .btn{flex:1;padding:13px}
+@media(max-width:760px){.view.active .sticky-cta{display:flex}}
+
+/* acessibilidade / movimento reduzido */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .hero .ph{transform:none}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<!-- ══════════════════════════════════════════════════════════════
+     SELETOR DE PROPOSTAS
+     ══════════════════════════════════════════════════════════════ -->
+<section class="view active" id="v-chooser">
+  <div class="ch-top">
+    <div class="wrap">
+      <div class="ch-logo">
+        <span class="logo stacked">
+          <img src="img/logo-claro.png" alt="Sweet Sketch Lda. Construtora" width="584" height="296">
+        </span>
+      </div>
+      <span class="k">Proposta de website · duas versões</span>
+      <h1>Duas propostas. Dois orçamentos. <em>Escolha e veja ao vivo.</em></h1>
+      <p class="sub">Uma versão essencial e uma versão completa, ambas navegáveis a sério, com fotografias, obras e formulários a funcionar.</p>
+      <div class="ch-rot" id="rot">
+        <span class="tag ch-fade" id="rotTag">Confiança</span>
+        <span class="txt ch-fade" id="rotTxt">75% dos clientes avaliam a sua empresa pelo site, antes sequer de ligarem.</span>
+      </div>
+      <div class="ch-dots" id="rotDots"></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="ch-cards">
+      <article class="ch-card">
+        <span class="ch-tag">Entrada</span>
+        <div class="ch-prev">
+          <img src="img/serv-construcao.jpg" alt="Moradia moderna construída de raiz" width="900" height="394" loading="lazy" decoding="async">
+          <span class="lab">Versão Base · clara e direta</span>
+        </div>
+        <div class="ch-body">
+          <div class="ch-pn">Versão Base</div>
+          <div class="ch-price"><span class="amt">850</span><span class="cur">€</span><span class="per">único · +IVA</span></div>
+          <div class="ch-tl">O essencial, claro e profissional.</div>
+          <ul>
+            <li>{k} Site de 5 a 6 páginas essenciais</li>
+            <li>{k} Fotografias reais das suas obras</li>
+            <li>{k} Galeria de obras (6 a 12 projetos)</li>
+            <li>{k} Formulário de pedido de orçamento</li>
+            <li>{k} Telefone e WhatsApp clicáveis</li>
+            <li>{k} Responsivo + SEO base + Google</li>
+            <li>{k} Entrega em 2 a 3 semanas</li>
+          </ul>
+          <button class="btn b-ink ch-open" data-go="base">Ver a Versão Base <span class="arw">→</span></button>
+        </div>
+      </article>
+
+      <article class="ch-card prem">
+        <span class="ch-tag">Recomendado</span>
+        <div class="ch-prev">
+          <img src="img/caso.jpg" alt="Moradia premium com piscina ao entardecer" width="1400" height="613" loading="lazy" decoding="async">
+          <span class="lab">Versão Completa · premium e imersiva</span>
+        </div>
+        <div class="ch-body">
+          <div class="ch-pn">Versão Completa</div>
+          <div class="ch-price"><span class="amt">1.200</span><span class="cur">€</span><span class="per">único · +IVA</span></div>
+          <div class="ch-tl">A montra de quem vende pela execução.</div>
+          <ul>
+            <li>{k} Tudo o da Base, sem limite de páginas</li>
+            <li>{k} Portefólio filtrável com 12 obras</li>
+            <li>{k} Comparador <b>antes / depois</b> interativo</li>
+            <li>{k} Casos de estudo com métricas reais</li>
+            <li>{k} Blog + processo de obra + testemunhos</li>
+            <li>{k} SEO local avançado + CRM + Analytics</li>
+            <li>{k} Entrega em 4 a 6 semanas</li>
+          </ul>
+          <button class="btn b-amber ch-open" data-go="premium">Ver a Versão Completa <span class="arw">→</span></button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     VERSÃO BASE
+     ══════════════════════════════════════════════════════════════ -->
+<section class="view" id="v-base">
+  <div class="demobar">
+    <span class="side">
+      <button class="mini" data-go="chooser">← Voltar às propostas</button>
+      <span class="pill">Versão Base · 850 €</span>
+    </span>
+    <button class="mini sw" data-go="premium">Ver Versão Completa →</button>
+  </div>
+  <div class="demonote"><b>Demonstração.</b> As fotografias, os testemunhos e os números são de exemplo. Os dados da empresa (nome, NIF, CAE, localização e serviços) são reais.</div>
+
+  <header class="nav" data-nav>
+    <div class="wrap">
+      <a class="logo" href="#b-top">
+        <img src="img/logo-h-escuro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
+      </a>
+      <nav class="nav-links">
+        <a href="#b-serv">Serviços</a>
+        <a href="#b-obras">Obras</a>
+        <a href="#b-clientes">Clientes</a>
+        <a href="#b-contacto" class="cta">Pedir orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="b-top" class="hero" data-carousel="base"></div>
+
+  <div class="trust"><div class="track" data-marquee></div></div>
+
+  <div class="stats"><div class="wrap in">
+    <div class="stat"><div class="n">2022</div><div class="l">Constituída em maio</div></div>
+    <div class="stat"><div class="n"><span data-count="20">0</span><em>+</em></div><div class="l">Especialidades de obra</div></div>
+    <div class="stat"><div class="n">41000</div><div class="l">CAE · Construção de edifícios</div></div>
+    <div class="stat"><div class="n word">Grândola</div><div class="l">Alentejo Litoral · Setúbal</div></div>
+  </div></div>
+
+  <section class="sec" id="b-serv"><div class="wrap">
+    <div class="sh mid"><span class="k">O que fazemos</span><h2>Da estrutura ao interruptor, tudo em casa.</h2><p>Construção de edifícios residenciais e não residenciais, com as instalações e os acabamentos feitos pela mesma equipa.</p></div>
+    <div class="serv" data-serv></div>
+  </div></section>
+
+  <section class="sec alt" id="b-obras"><div class="wrap">
+    <div class="sh mid"><span class="k">Portefólio</span><h2>Obras que falam por nós.</h2><p>Uma seleção do que a Sweet Sketch constrói e remodela no Alentejo Litoral.</p></div>
+    <div class="obras" data-obras="6"></div>
+    <p class="ba-note" style="text-align:center;margin-top:22px">Imagens ilustrativas. Aqui entram as fotografias das obras da Sweet Sketch</p>
+  </div></section>
+
+  <section class="sec" id="b-clientes"><div class="wrap">
+    <div class="sh mid"><span class="k">Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
+    <div class="tests" data-tests></div>
+  </div></section>
+
+  <section class="sec contact" id="b-contacto"><div class="wrap">
+    <div class="sh"><span class="k">Peça o seu orçamento</span><h2>Conte-nos o que quer fazer.</h2><p>Respondemos em 24 horas, sempre com uma pessoa do lado de cá.</p></div>
+    <div class="cgrid">
+      <form class="form" onsubmit="return false">
+        <div class="two">
+          <div class="field"><label>Nome</label><input placeholder="O seu nome"></div>
+          <div class="field"><label>Telefone</label><input placeholder="+351 ___ ___ ___"></div>
+        </div>
+        <div class="field"><label>Email</label><input type="email" placeholder="email@exemplo.pt"></div>
+        <div class="two">
+          <div class="field"><label>Tipo de obra</label><select><option>Construção de edifício</option><option>Remodelação e acabamentos</option><option>Pinturas</option><option>Instalações elétricas</option><option>Águas, esgotos e climatização</option><option>Telecomunicações e segurança</option><option>Carpintaria e coberturas</option><option>Demolição e terraplenagem</option><option>Imobiliário</option></select></div>
+          <div class="field"><label>Localidade</label><input placeholder="Ex.: Melides"></div>
+        </div>
+        <div class="field"><label>Mensagem</label><textarea rows="3" placeholder="Descreva a sua obra"></textarea></div>
+        <button class="btn b-amber" type="submit">Enviar pedido <span class="arw">→</span></button>
+      </form>
+      <div>
+        <div class="map" data-map></div>
+        <div class="cinfo" data-cinfo></div>
+      </div>
+    </div>
+  </div></section>
+
+  <footer class="foot"><div class="wrap ft">
+    <span class="logo">
+      <img src="img/logo-h-claro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
+    </span>
+    <span class="fl">© 2026 Sweet Sketch, Unipessoal Lda · NIF 516997904 · Grândola, Setúbal</span>
+  </div></footer>
+
+  <div class="sticky-cta">
+    <a class="btn b-ghost" href="#b-obras">Ver obras</a>
+    <a class="btn b-amber" href="#b-contacto">Pedir orçamento</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     VERSÃO COMPLETA
+     ══════════════════════════════════════════════════════════════ -->
+<section class="view" id="v-premium">
+  <div class="demobar">
+    <span class="side">
+      <button class="mini" data-go="chooser">← Voltar às propostas</button>
+      <span class="pill">Versão Completa · 1.200 €</span>
+    </span>
+    <button class="mini sw" data-go="base">Ver Versão Base →</button>
+  </div>
+  <div class="demonote"><b>Demonstração.</b> As fotografias, os testemunhos e os números são de exemplo. Os dados da empresa (nome, NIF, CAE, localização e serviços) são reais.</div>
+
+  <header class="nav" data-nav>
+    <div class="wrap">
+      <a class="logo" href="#p-top">
+        <img src="img/logo-h-escuro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
+      </a>
+      <nav class="nav-links">
+        <a href="#p-serv">Serviços</a>
+        <a href="#p-obras">Obras</a>
+        <a href="#p-caso">Casos</a>
+        <a href="#p-imobiliario">Imobiliário</a>
+        <a href="#p-processo">Processo</a>
+        <a href="#p-blog">Blog</a>
+        <a href="#p-contacto" class="cta">Pedir orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="p-top" class="hero" data-carousel="premium"></div>
+
+  <div class="trust"><div class="track" data-marquee></div></div>
+
+  <div class="stats"><div class="wrap in">
+    <div class="stat"><div class="n">2022</div><div class="l">Constituída em maio</div></div>
+    <div class="stat"><div class="n"><span data-count="20">0</span><em>+</em></div><div class="l">Especialidades de obra</div></div>
+    <div class="stat"><div class="n">41000</div><div class="l">CAE · Construção de edifícios</div></div>
+    <div class="stat"><div class="n word">Grândola</div><div class="l">Alentejo Litoral · Setúbal</div></div>
+  </div></div>
+
+  <section class="sec" id="p-serv"><div class="wrap">
+    <div class="sh-row">
+      <div class="sh"><span class="k">01 / Especialidades</span><h2>Da estrutura ao interruptor, tudo em casa.</h2><p>Construímos edifícios residenciais e não residenciais e fazemos as instalações e os acabamentos com a mesma equipa. Menos empreiteiros, menos desculpas.</p></div>
+      <a class="btn b-line" href="#p-contacto">Falar connosco <span class="arw">→</span></a>
+    </div>
+    <div class="serv" data-serv></div>
+  </div></section>
+
+  <section class="sec tint" id="p-obras"><div class="wrap">
+    <div class="sh"><span class="k">02 / Portefólio</span><h2>Obras reais, filtráveis por tipo.</h2><p>Encontre uma obra parecida com a sua e veja como ficou.</p></div>
+    <div class="filters" data-filters>
+      <button class="fbtn on" data-f="all">Todas</button>
+      <button class="fbtn" data-f="construcao">Construção</button>
+      <button class="fbtn" data-f="remodelacao">Remodelação</button>
+      <button class="fbtn" data-f="comercial">Comercial</button>
+    </div>
+    <div class="obras" data-obras="12"></div>
+    <p class="ba-note" style="margin-top:22px">Imagens ilustrativas. Aqui entram as fotografias das obras da Sweet Sketch</p>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="sh"><span class="k">03 / Antes e depois</span><h2>Clique e veja a diferença.</h2><p>A prova mais rápida do valor de uma remodelação: o cliente vê em dois segundos.</p></div>
+    <div class="ba" id="ba">
+      <img class="before" src="img/antes.jpg" alt="Interior antes da remodelação, em obra" width="1200" height="675" loading="lazy" decoding="async">
+      <img class="after" src="img/depois.jpg" alt="O mesmo espaço depois da remodelação" width="1200" height="675" loading="lazy" decoding="async">
+      <span class="tagA">Antes</span><span class="tagB">Depois</span>
+      <div class="handle"><span class="grip">⇄</span></div>
+    </div>
+    <p class="ba-note">Clique em qualquer ponto da imagem. Imagens ilustrativas, na versão final entram fotografias das vossas obras</p>
+  </div></section>
+
+  <section class="sec alt" id="p-caso"><div class="wrap">
+    <div class="sh"><span class="k">04 / Caso de estudo</span><h2>Assim contamos uma obra vossa.</h2><p>Modelo de página. Cada obra ganha uma ficha destas, com fotografias, texto e números reais.</p></div>
+    <div class="case">
+      <div class="img"><img src="img/caso.jpg" alt="Moradia com piscina, exemplo de caso de estudo" width="1400" height="800" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <span class="k">Exemplo · Moradia em Melides</span>
+        <h3>Do terreno em bruto à casa entregue.</h3>
+        <div class="blk"><b>Desafio</b><p>Aqui entra o ponto de partida: o terreno, o edifício existente, o prazo ou a restrição que tornou a obra difícil.</p></div>
+        <div class="blk"><b>Solução</b><p>O que a Sweet Sketch propôs e executou, com as decisões técnicas que fizeram a diferença.</p></div>
+        <div class="blk"><b>Resultado</b><p>O que o cliente recebeu no fim, e porque é que voltaria a contratar.</p></div>
+        <div class="metrics">
+          <div><div class="v">00</div><div class="t">meses de obra</div></div>
+          <div><div class="v">000</div><div class="t">m² intervencionados</div></div>
+          <div><div class="v">00</div><div class="t">especialidades</div></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="p-imobiliario"><div class="wrap">
+    <div class="sh"><span class="k">05 / Para além da obra</span><h2>Também tratamos do imóvel.</h2></div>
+    <div class="case">
+      <div class="img"><img src="img/serv-imobiliario.jpg" alt="Vista aérea de casas com telhados de telha" width="900" height="600" loading="lazy" decoding="async"></div>
+      <div class="txt">
+        <span class="k">Imobiliário</span>
+        <h3>Comprar, vender, arrendar e administrar.</h3>
+        <div class="blk"><b>Compra e venda</b><p>Compra e venda de bens imobiliários, com quem conhece a construção por dentro.</p></div>
+        <div class="blk"><b>Arrendamento e mediação</b><p>Arrendamento de imóveis e mediação imobiliária no Alentejo Litoral.</p></div>
+        <div class="blk"><b>Administração</b><p>Administração de imóveis por conta de outrem, para quem não vive por perto.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec tint" id="p-processo"><div class="wrap">
+    <div class="sh"><span class="k">06 / Como trabalhamos</span><h2>Um método transparente em cada etapa.</h2></div>
+    <div class="proc" data-proc></div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="sh"><span class="k">07 / Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
+    <div class="tests" data-tests></div>
+  </div></section>
+
+  <section class="sec alt" id="p-blog"><div class="wrap">
+    <div class="sh-row">
+      <div class="sh"><span class="k">08 / Blog</span><h2>Dicas de obra, sem letras pequenas.</h2></div>
+      <a class="btn b-line" href="#p-blog">Ver todos os artigos <span class="arw">→</span></a>
+    </div>
+    <div class="blog" data-blog></div>
+  </div></section>
+
+  <section class="sec contact" id="p-contacto"><div class="wrap">
+    <div class="sh"><span class="k">09 / Pedir orçamento</span><h2>Vamos falar da sua obra.</h2><p>Anexe plantas e escolha se quer visita técnica gratuita. Respondemos em 24 horas.</p></div>
+    <div class="cgrid">
+      <form class="form" onsubmit="return false">
+        <div class="two">
+          <div class="field"><label>Nome</label><input placeholder="O seu nome"></div>
+          <div class="field"><label>Telefone / WhatsApp</label><input placeholder="+351 ___ ___ ___"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label>Tipo de obra</label><select><option>Construção de edifício</option><option>Remodelação e acabamentos</option><option>Pinturas</option><option>Instalações elétricas</option><option>Águas, esgotos e climatização</option><option>Telecomunicações e segurança</option><option>Carpintaria e coberturas</option><option>Demolição e terraplenagem</option><option>Imobiliário</option></select></div>
+          <div class="field"><label>Faixa de orçamento</label><select><option>Até 25.000 €</option><option>25.000 a 50.000 €</option><option>50.000 a 100.000 €</option><option>Mais de 100.000 €</option></select></div>
+        </div>
+        <div class="field"><label>Plantas / documentos (opcional)</label><input type="file"></div>
+        <div class="field"><label>Mensagem</label><textarea rows="3" placeholder="Descreva a sua obra"></textarea></div>
+        <label class="check"><input type="checkbox"> Quero agendar uma visita técnica gratuita.</label>
+        <button class="btn b-amber" type="submit">Enviar pedido de orçamento <span class="arw">→</span></button>
+      </form>
+      <div>
+        <div class="map" data-map></div>
+        <div class="cinfo" data-cinfo></div>
+      </div>
+    </div>
+  </div></section>
+
+  <footer class="foot"><div class="wrap ft">
+    <span class="logo">
+      <img src="img/logo-h-claro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
+    </span>
+    <span class="fl">© 2026 Sweet Sketch, Unipessoal Lda · NIF 516997904 · CAE 41000 · Grândola, Setúbal</span>
+  </div></footer>
+
+  <a class="wa" href="#p-contacto" title="Botão de WhatsApp. Fica ativo assim que a Sweet Sketch indicar o número." aria-label="Botão de WhatsApp, número por definir">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.2-.7 1-.9 1.2-.4.2-.7 0a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.4 0-.5.1-.7l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4A3.5 3.5 0 0 0 5.8 9c0 1.5 1.1 3 1.3 3.2s2.2 3.4 5.3 4.7a17 17 0 0 0 1.8.7 4.3 4.3 0 0 0 2 .1c.6-.1 1.7-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.4zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.3a8.3 8.3 0 0 1-4.2-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.3 8.3 0 1 1 12 20.3z"/></svg>
+  </a>
+
+  <div class="sticky-cta">
+    <a class="btn b-ghost" href="#p-obras">Ver obras</a>
+    <a class="btn b-amber" href="#p-contacto">Pedir orçamento</a>
+  </div>
+</section>
+
+</div><!-- /#app -->
+
+<script>
+(function(){
+"use strict";
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ─────────── ícone de visto nas listas do seletor ─────────── */
+var TICK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+document.querySelectorAll('.ch-card li').forEach(function(li){
+  li.innerHTML = TICK + li.innerHTML.replace(/^\{k\}\s*/, '');
+});
+
+/* ─────────── rotador de argumentos (seletor) ─────────── */
+var FACTS = [
+  {tag:'Confiança', txt:'75% dos clientes avaliam a sua empresa pelo site, antes sequer de ligarem.'},
+  {tag:'Conversão', txt:'Um site bem estruturado converte 3 a 5% das visitas. Um site fraco, menos de 1%.'},
+  {tag:'Telemóvel', txt:'A maioria procura "construtora perto de mim" no telemóvel e decide em segundos.'},
+  {tag:'Prova',     txt:'As fotografias reais das vossas obras são o que mais gera confiança.'},
+  {tag:'Google',    txt:'Aparecer nas pesquisas locais traz pedidos de orçamento todas as semanas.'},
+  {tag:'Retorno',   txt:'Uma única obra adjudicada paga o site muitas vezes.'}
+];
+(function(){
+  var rot = document.getElementById('rot'), tag = document.getElementById('rotTag'),
+      txt = document.getElementById('rotTxt'), dots = document.getElementById('rotDots');
+  if(!rot || !dots) return;
+  FACTS.forEach(function(_, i){
+    var d = document.createElement('i');
+    if(i === 0) d.className = 'on';
+    d.addEventListener('click', function(){ go(i); });
+    dots.appendChild(d);
+  });
+  var i = 0, timer = null;
+  function paint(){
+    tag.textContent = FACTS[i].tag;
+    txt.textContent = FACTS[i].txt;
+    dots.querySelectorAll('i').forEach(function(d, n){ d.classList.toggle('on', n === i); });
+  }
+  function go(n){
+    i = (n + FACTS.length) % FACTS.length;
+    if(reduce){ paint(); return; }
+    tag.classList.add('out'); txt.classList.add('out');
+    setTimeout(function(){
+      paint();
+      tag.classList.remove('out'); txt.classList.remove('out');
+    }, 430);
+    restart();
+  }
+  function restart(){ clearTimeout(timer); if(!reduce) timer = setTimeout(function(){ go(i + 1); }, 5200); }
+  restart();
+  rot.addEventListener('mouseenter', function(){ clearTimeout(timer); });
+  rot.addEventListener('mouseleave', restart);
+})();
+
+/* ─────────── dados ─────────── */
+var SLIDES = [
+  {img:'hero-construcao.jpg',  cat:'Construção de edifícios',  h:'Construímos a sua casa, do terreno à chave na mão.',   s:'Desde Grândola, a construir edifícios residenciais e não residenciais até Lisboa e arredores.'},
+  {img:'hero-remodelacao.jpg', cat:'Remodelações e acabamentos', h:'Remodelamos por completo, sem surpresas.',           s:'Estucagem, pinturas, pavimentos, caixilharia e vidros. Entregamos pronto a habitar.'},
+  {img:'hero-alentejo.jpg',    cat:'Casas do litoral',         h:'Da Comporta a Melides, obra feita com critério.',      s:'Conhecemos o terreno, os materiais e o clima de quem constrói junto ao mar.'},
+  {img:'hero-instalacoes.jpg', cat:'Instalações técnicas',     h:'Eletricidade, águas, clima e telecomunicações.',       s:'A parte que não se vê é a que faz a casa funcionar. Fazemos tudo com equipa própria.'},
+  {img:'hero-comercial.jpg',   cat:'Não residencial',          h:'Lojas, escritórios e edifícios de serviços.',          s:'Executamos por fases para o seu negócio nunca ter de fechar portas.'}
+];
+
+var SERVICOS = [
+  {n:'01', img:'serv-construcao.jpg',   t:'Construção de edifícios',   d:'Residenciais e não residenciais, do terreno à chave na mão.',                  cta:'Quero construir'},
+  {n:'02', img:'serv-remodelacao.jpg',  t:'Remodelações e acabamentos',d:'Estucagem, revestimento de pavimentos e paredes, colocação de vidros.',        cta:'Quero remodelar'},
+  {n:'03', img:'serv-pintura.jpg',      t:'Pinturas de edifícios',     d:'Interior e exterior, com a preparação de superfícies bem feita.',              cta:'Pedir orçamento'},
+  {n:'04', img:'serv-eletricidade.jpg', t:'Instalações elétricas',     d:'Eletrificação, quadros, iluminação, sinalização e distribuição industrial.',   cta:'Falar connosco'},
+  {n:'05', img:'serv-redes.jpg',        t:'Águas, esgotos e clima',    d:'Canalizações, redes de fluídos e instalação de climatização.',                 cta:'Falar connosco'},
+  {n:'06', img:'serv-telecom.jpg',      t:'Telecomunicações e segurança', d:'Cablagens, TV por cabo, alarmes de roubo e incêndio, antenas e pára-raios.', cta:'Falar connosco'},
+  {n:'07', img:'serv-carpintaria.jpg',  t:'Carpintaria e coberturas',  d:'Montagem de carpintarias, caixilharia e colocação de coberturas.',             cta:'Falar connosco'},
+  {n:'08', img:'obra-3.jpg',            t:'Demolição e terraplenagem', d:'Demolição, preparação de locais, sondagens e equipamento com operador.',       cta:'Falar connosco'}
+];
+
+var OBRAS = [
+  {img:'obra-1.jpg',  t:'Moradia T4',                 l:'Melides',            c:'construcao',  cat:'Construção'},
+  {img:'obra-2.jpg',  t:'Remodelação total de T3',    l:'Grândola',           c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-3.jpg',  t:'Recuperação de edifício',    l:'Alcácer do Sal',     c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-4.jpg',  t:'Moradia contemporânea',      l:'Comporta',           c:'construcao',  cat:'Construção'},
+  {img:'obra-5.jpg',  t:'Loja e escritório',          l:'Santiago do Cacém',  c:'comercial',   cat:'Comercial'},
+  {img:'obra-6.jpg',  t:'Remodelação de cozinha',     l:'Grândola',           c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-7.jpg',  t:'Sótão e cobertura',          l:'Tróia',              c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-8.jpg',  t:'Moradia térrea',             l:'Carvalhal',          c:'construcao',  cat:'Construção'},
+  {img:'obra-9.jpg',  t:'Escritórios open-space',     l:'Sines',              c:'comercial',   cat:'Comercial'},
+  {img:'obra-10.jpg', t:'Casa de banho completa',     l:'Grândola',           c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-11.jpg', t:'Cozinha chave na mão',       l:'Melides',            c:'remodelacao', cat:'Remodelação'},
+  {img:'obra-12.jpg', t:'Moradia com piscina',        l:'Comporta',           c:'construcao',  cat:'Construção'}
+];
+
+var PROCESSO = [
+  {n:'01', img:'proc-1.jpg', t:'Visita e levantamento', d:'Vamos ao local, medimos tudo e ouvimos as suas ideias.'},
+  {n:'02', img:'proc-2.jpg', t:'Projeto e orçamento',   d:'Orçamento fechado, com caderno de encargos claro.'},
+  {n:'03', img:'proc-3.jpg', t:'Execução acompanhada',  d:'Responsável único e comunicação constante durante a obra.'},
+  {n:'04', img:'proc-4.jpg', t:'Entrega e garantia',    d:'Entregamos a obra limpa e respondemos pela garantia.'},
+  {n:'05', img:'proc-5.jpg', t:'Apoio pós-obra',        d:'Continuamos disponíveis muito depois de entregar a chave.'}
+];
+
+/* Exemplos de layout. Os testemunhos reais entram quando a Sweet Sketch os fornecer. */
+var TESTS = [
+  {p:'Aqui entra a avaliação de um cliente vosso, tal como a escreveu.', b:'Nome do cliente', s:'Tipo de obra · Localidade'},
+  {p:'Três a quatro linhas chegam. Vale mais uma frase concreta do que muitos elogios vagos.', b:'Nome do cliente', s:'Tipo de obra · Localidade'},
+  {p:'Se tiverem avaliações no Google, podemos puxá-las automaticamente para aqui.', b:'Nome do cliente', s:'Tipo de obra · Localidade'}
+];
+
+var ARTIGOS = [
+  {img:'blog-1.jpg', cat:'Remodelações', t:'IVA a 6% nas obras em casa: quando se aplica?', d:'Em que condições a empreitada baixa de 23% para 6%.'},
+  {img:'blog-2.jpg', cat:'Construção',   t:'Quanto custa construir no litoral alentejano?', d:'Faixas de custo por m² e o que faz o preço variar.'},
+  {img:'blog-3.jpg', cat:'Instalações',  t:'Obra nova: o que decidir antes de fechar paredes.', d:'Eletricidade, águas e climatização não se remedeiam depois.'}
+];
+
+var MARQUEE = ['Construção de edifícios','Remodelações e pinturas','Instalações elétricas','Águas e esgotos','Climatização','Coberturas','Carpintaria e caixilharia','Demolição','Mediação imobiliária','Grândola · Alentejo Litoral'];
+
+/* ─────────── construtores de blocos ─────────── */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+document.querySelectorAll('[data-marquee]').forEach(function(el){
+  var one = MARQUEE.map(function(m){ return '<span>' + esc(m) + '</span>'; }).join('');
+  el.innerHTML = one + one;
+});
+
+document.querySelectorAll('[data-serv]').forEach(function(el){
+  el.innerHTML = SERVICOS.map(function(s){
+    var anchor = el.closest('#v-base') ? '#b-contacto' : '#p-contacto';
+    return '<a class="scard" href="' + anchor + '">'
+      + '<img src="img/' + s.img + '" alt="' + esc(s.t) + '" width="900" height="600" loading="lazy" decoding="async">'
+      + '<span class="in"><span class="sn">' + s.n + '</span>'
+      + '<h3>' + esc(s.t) + '</h3><p>' + esc(s.d) + '</p>'
+      + '<span class="go">' + esc(s.cta) + ' <span class="arw">→</span></span></span></a>';
+  }).join('');
+});
+
+document.querySelectorAll('[data-obras]').forEach(function(el){
+  var n = parseInt(el.getAttribute('data-obras'), 10) || 6;
+  el.innerHTML = OBRAS.slice(0, n).map(function(o){
+    return '<article class="obra" data-cat="' + o.c + '"><div class="oimg">'
+      + '<img src="img/' + o.img + '" alt="' + esc(o.t) + ' em ' + esc(o.l) + '" width="900" height="675" loading="lazy" decoding="async">'
+      + '<span class="badge">' + esc(o.cat) + '</span>'
+      + '<span class="ov"><span>Ver obra →</span></span></div>'
+      + '<div class="ocap"><b>' + esc(o.t) + '</b><span>' + esc(o.l) + '</span></div></article>';
+  }).join('');
+});
+
+document.querySelectorAll('[data-proc]').forEach(function(el){
+  el.innerHTML = PROCESSO.map(function(p){
+    return '<div class="pstep"><div class="pi"><img src="img/' + p.img + '" alt="' + esc(p.t) + '" width="900" height="675" loading="lazy" decoding="async"></div>'
+      + '<div class="pb"><div class="pn">' + p.n + '</div><h4>' + esc(p.t) + '</h4><p>' + esc(p.d) + '</p></div></div>';
+  }).join('');
+});
+
+document.querySelectorAll('[data-tests]').forEach(function(el){
+  el.innerHTML = TESTS.map(function(t){
+    return '<div class="test"><div class="stars">★★★★★</div><p>“' + esc(t.p) + '”</p>'
+      + '<div class="who"><b>' + esc(t.b) + '</b> <span>· ' + esc(t.s) + '</span></div></div>';
+  }).join('');
+});
+
+document.querySelectorAll('[data-blog]').forEach(function(el){
+  el.innerHTML = ARTIGOS.map(function(a){
+    return '<article class="art"><div class="ai"><img src="img/' + a.img + '" alt="' + esc(a.t) + '" width="900" height="506" loading="lazy" decoding="async"></div>'
+      + '<div class="ab"><span class="cat">' + esc(a.cat) + '</span><h4>' + esc(a.t) + '</h4><p>' + esc(a.d) + '</p></div></article>';
+  }).join('');
+});
+
+document.querySelectorAll('[data-cinfo]').forEach(function(el){
+  el.innerHTML =
+    '<div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span><b>Grândola</b>, distrito de Setúbal. Obra em Melides, Comporta, Carvalhal, Tróia, Alcácer do Sal, Santiago do Cacém e Sines.</span></div>' +
+    '<div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg><span><b>Telefone e email</b> a indicar pela Sweet Sketch</span></div>' +
+    '<div class="crow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg><span><b>NIF 516997904</b> · CAE 41000, construção de edifícios residenciais e não residenciais</span></div>';
+});
+
+document.querySelectorAll('[data-map]').forEach(function(el){
+  el.innerHTML =
+    '<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" fill="none" role="img" aria-label="Mapa da zona de atuação">' +
+    '<rect width="400" height="250" fill="#232833"/>' +
+    '<path d="M0 88H400M0 168H400M118 0V250M272 0V250" stroke="#333B47" stroke-width="9"/>' +
+    '<path d="M0 128H400M58 0V250M340 0V250" stroke="#333B47" stroke-width="4.5" opacity=".75"/>' +
+    '<path d="M-20 210 L200 120 L420 200" stroke="#2C6A94" stroke-width="14" opacity=".5"/>' +
+    '<circle cx="200" cy="128" r="26" fill="none" stroke="#E5A238" stroke-width="1.5" opacity=".45"/>' +
+    '<circle cx="200" cy="128" r="15" fill="none" stroke="#E5A238" stroke-width="1.5" opacity=".7"/>' +
+    '<path d="M200 118c-6 0-10 4-10 10 0 7 10 16 10 16s10-9 10-16c0-6-4-10-10-10z" fill="#E5A238"/>' +
+    '</svg>';
+});
+
+/* ─────────── carrossel: crossfade contínuo, sem saltos ─────────── */
+function buildCarousel(el, anchors){
+  var html = SLIDES.map(function(s, i){
+    return '<div class="slide' + (i === 0 ? ' on' : '') + '">'
+      + '<div class="ph" style="background-image:url(img/' + s.img + ')"></div>'
+      + '<div class="content"><span class="k">' + esc(s.cat) + '</span>'
+      + '<h1>' + esc(s.h) + '</h1><p class="sub">' + esc(s.s) + '</p>'
+      + '<div class="row"><a class="btn b-amber" href="#' + anchors.contact + '">Pedir orçamento gratuito <span class="arw">→</span></a>'
+      + '<a class="btn b-ghost" href="#' + anchors.obras + '">Ver as nossas obras</a></div></div></div>';
+  }).join('');
+  var dots = SLIDES.map(function(_, i){ return '<i' + (i === 0 ? ' class="on"' : '') + ' data-i="' + i + '"></i>'; }).join('');
+  el.innerHTML = html
+    + '<button class="cnav cprev" aria-label="Slide anterior">‹</button>'
+    + '<button class="cnav cnext" aria-label="Slide seguinte">›</button>'
+    + '<div class="cdots">' + dots + '</div>'
+    + '<div class="prog"></div>';
+
+  var slides = el.querySelectorAll('.slide'),
+      ds     = el.querySelectorAll('.cdots i'),
+      prog   = el.querySelector('.prog'),
+      idx = 0, timer = null;
+
+  /* arranca o zoom lento também no primeiro slide (senão só o 2.º em diante o faz) */
+  if(!reduce){
+    var firstPh = slides[0].querySelector('.ph');
+    firstPh.style.transform = 'scale(1.06)';
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ firstPh.style.transform = ''; });
+    });
+  }
+
+  function show(n){
+    idx = (n + slides.length) % slides.length;
+    slides.forEach(function(s, i){ s.classList.toggle('on', i === idx); });
+    ds.forEach(function(d, i){ d.classList.toggle('on', i === idx); });
+    resetProgress();
+  }
+  function resetProgress(){
+    if(!prog || reduce) return;
+    prog.classList.remove('run');
+    prog.style.width = '0';
+    void prog.offsetWidth;              /* reinicia a transição sem salto */
+    prog.classList.add('run');
+    prog.style.width = '100%';
+  }
+  function next(){ show(idx + 1); }
+  function start(){ stop(); if(!reduce){ timer = setInterval(next, 6000); resetProgress(); } }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } if(prog){ prog.classList.remove('run'); prog.style.width = '0'; } }
+
+  el.querySelector('.cnext').addEventListener('click', function(){ next(); start(); });
+  el.querySelector('.cprev').addEventListener('click', function(){ show(idx - 1); start(); });
+  ds.forEach(function(d){ d.addEventListener('click', function(){ show(+d.getAttribute('data-i')); start(); }); });
+  el.addEventListener('mouseenter', stop);
+  el.addEventListener('mouseleave', start);
+
+  /* deslizar com o dedo */
+  var x0 = null;
+  el.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 45){ dx < 0 ? next() : show(idx - 1); start(); }
+    x0 = null;
+  }, {passive:true});
+
+  return {start:start, stop:stop};
+}
+
+var carousels = {};
+document.querySelectorAll('[data-carousel]').forEach(function(el){
+  var which = el.getAttribute('data-carousel');
+  carousels[which] = buildCarousel(el, which === 'base'
+    ? {contact:'b-contacto', obras:'b-obras'}
+    : {contact:'p-contacto', obras:'p-obras'});
+});
+
+/* pré-carrega as fotos do carrossel para a troca nunca engasgar */
+window.addEventListener('load', function(){
+  SLIDES.forEach(function(s){ var i = new Image(); i.src = 'img/' + s.img; });
+});
+
+/* ─────────── filtros do portefólio ─────────── */
+document.querySelectorAll('[data-filters]').forEach(function(bar){
+  var scope = bar.closest('section');
+  bar.addEventListener('click', function(e){
+    var b = e.target.closest('.fbtn');
+    if(!b) return;
+    bar.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    var f = b.getAttribute('data-f');
+    scope.querySelectorAll('.obra').forEach(function(o){
+      o.classList.toggle('hide', !(f === 'all' || o.getAttribute('data-cat') === f));
+    });
+  });
+});
+
+/* ─────────── contadores ─────────── */
+function runCounters(scope){
+  if(scope.dataset.counted) return;
+  scope.dataset.counted = '1';
+  scope.querySelectorAll('[data-count]').forEach(function(el){
+    var target = +el.getAttribute('data-count'), sep = el.hasAttribute('data-sep');
+    function fmt(v){ return sep ? Math.round(v).toLocaleString('pt-PT') : String(Math.round(v)); }
+    if(reduce){ el.textContent = fmt(target); return; }
+    var t0 = null, dur = 1400;
+    requestAnimationFrame(function tick(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * e);
+      if(p < 1) requestAnimationFrame(tick);
+    });
+  });
+}
+document.querySelectorAll('.stats').forEach(function(s){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ runCounters(s); io.disconnect(); } });
+  }, {threshold:.35});
+  io.observe(s);
+});
+
+/* ─────────── comparador antes / depois ─────────── */
+(function(){
+  var ba = document.getElementById('ba');
+  if(!ba) return;
+  var after  = ba.querySelector('.after'),
+      handle = ba.querySelector('.handle'),
+      pos = 50, raf = null, nextP = 50,
+      down = false, moved = false, startX = 0;
+
+  function apply(p){
+    pos = p;
+    after.style.clipPath = 'inset(0 0 0 ' + p + '%)';
+    handle.style.left = p + '%';
+    ba.setAttribute('aria-valuenow', Math.round(p));
+  }
+  function pctFrom(clientX){
+    var r = ba.getBoundingClientRect();
+    if(!r.width) return pos;
+    return Math.max(0, Math.min(100, ((clientX - r.left) / r.width) * 100));
+  }
+  /* a arrastar: guarda sempre a posição mais recente e pinta uma vez por frame */
+  function track(clientX){
+    nextP = pctFrom(clientX);
+    if(raf) return;
+    raf = requestAnimationFrame(function(){ raf = null; apply(nextP); });
+  }
+
+  ba.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    down = true; moved = false; startX = e.clientX;
+    try { ba.setPointerCapture(e.pointerId); } catch(err){}
+  });
+  ba.addEventListener('pointermove', function(e){
+    if(!down) return;
+    if(!moved && Math.abs(e.clientX - startX) < 5) return;   /* tolerância: um clique com tremor continua a ser clique */
+    if(!moved){ moved = true; ba.classList.add('dragging'); }
+    track(e.clientX);
+  });
+  function release(e){
+    if(!down) return;
+    down = false;
+    if(moved){ ba.classList.remove('dragging'); }
+    else if(e && typeof e.clientX === 'number'){ apply(pctFrom(e.clientX)); }  /* clique: desliza até ao ponto */
+    if(raf){ cancelAnimationFrame(raf); raf = null; }
+  }
+  ba.addEventListener('pointerup', release);
+  ba.addEventListener('pointercancel', release);
+  ba.addEventListener('lostpointercapture', release);
+
+  /* teclado */
+  ba.setAttribute('tabindex','0');
+  ba.setAttribute('role','slider');
+  ba.setAttribute('aria-label','Comparar antes e depois');
+  ba.setAttribute('aria-valuemin','0');
+  ba.setAttribute('aria-valuemax','100');
+  ba.setAttribute('aria-valuenow','50');
+  ba.addEventListener('keydown', function(e){
+    var step = e.shiftKey ? 10 : 4, p = null;
+    if(e.key === 'ArrowLeft')  p = pos - step;
+    if(e.key === 'ArrowRight') p = pos + step;
+    if(e.key === 'Home') p = 0;
+    if(e.key === 'End')  p = 100;
+    if(p === null) return;
+    e.preventDefault();
+    apply(Math.max(0, Math.min(100, p)));
+  });
+})();
+
+/* ─────────── sombra da barra de navegação ─────────── */
+document.querySelectorAll('[data-nav]').forEach(function(nav){
+  var sentinel = document.createElement('div');
+  sentinel.style.cssText = 'position:absolute;top:0;height:1px;width:1px';
+  nav.parentNode.insertBefore(sentinel, nav);
+  new IntersectionObserver(function(en){
+    nav.classList.toggle('stuck', !en[0].isIntersecting);
+  }, {threshold:0}).observe(sentinel);
+});
+
+/* ─────────── âncoras suaves com compensação da barra ─────────── */
+document.addEventListener('click', function(e){
+  var a = e.target.closest('a[href^="#"]');
+  if(!a) return;
+  var id = a.getAttribute('href');
+  if(!id || id.length < 2) return;
+  var t = document.querySelector(id);
+  if(!t) return;
+  e.preventDefault();
+  var bar = a.closest('.view') ? a.closest('.view').querySelector('.demobar') : null;
+  var off = (bar ? bar.offsetHeight : 0) + 78 + 8;
+  window.scrollTo({top: Math.max(0, t.getBoundingClientRect().top + window.scrollY - off), behavior: reduce ? 'auto' : 'smooth'});
+});
+
+/* ─────────── troca de proposta: fade contínuo, sem corte ─────────── */
+var VIEWS = {chooser:'v-chooser', base:'v-base', premium:'v-premium'};
+function showView(name){
+  var next = document.getElementById(VIEWS[name]);
+  var cur  = document.querySelector('.view.active');
+  if(!next || cur === next) return;
+
+  Object.keys(carousels).forEach(function(k){ carousels[k].stop(); });
+
+  function swap(){
+    if(cur) cur.classList.remove('active');
+    next.classList.add('active');
+    window.scrollTo(0, 0);
+    if(carousels[name]) carousels[name].start();
+    requestAnimationFrame(function(){ document.body.classList.remove('swapping'); });
+  }
+
+  if(reduce){ swap(); return; }
+  document.body.classList.add('swapping');
+  setTimeout(swap, 200);
+}
+document.addEventListener('click', function(e){
+  var el = e.target.closest('[data-go]');
+  if(!el) return;
+  e.preventDefault();
+  showView(el.getAttribute('data-go'));
+});
+
+/* o carrossel só corre na vista visível */
+Object.keys(carousels).forEach(function(k){ carousels[k].stop(); });
+document.addEventListener('visibilitychange', function(){
+  var active = document.querySelector('.view.active');
+  if(!active) return;
+  var key = active.id === 'v-base' ? 'base' : (active.id === 'v-premium' ? 'premium' : null);
+  if(!key || !carousels[key]) return;
+  document.hidden ? carousels[key].stop() : carousels[key].start();
+});
+})();
+</script>
+
+</body>
+</html>
