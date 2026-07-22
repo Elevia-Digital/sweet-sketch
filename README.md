@@ -61,7 +61,8 @@ O site está marcado como demonstração porque parte do conteúdo é de exemplo
 - [ ] Testemunhos de clientes
 - [ ] Números concretos: obras concluídas, m² construídos, dimensão da equipa
 - [ ] Confirmar as promessas "resposta em 24 horas" e "visita técnica gratuita"
-- [ ] Confirmar a área de atuação: o banner diz "até Lisboa e arredores" mas o resto do site fala só do Alentejo Litoral
+
+Área de atuação assumida no site: de Grândola até Lisboa, passando pelo Alentejo Litoral (Comporta, Melides, Alcácer do Sal), pela Península de Setúbal e pela Grande Lisboa. Confirmar com o cliente se cobre mesmo toda esta faixa.
 
 Enquanto isso não chegar, os botões de telefone e WhatsApp apontam para o formulário em vez de um número inventado.
 
