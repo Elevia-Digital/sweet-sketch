@@ -374,6 +374,32 @@ body.swapping #app{opacity:0}
 .sticky-cta .btn{flex:1;padding:13px}
 @media(max-width:760px){.view.active .sticky-cta{display:flex}}
 
+/* obras recentes: galeria de fotografias reais (masonry) */
+.reais-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#2C6A2C;background:#E6F2E6;border:1px solid #CDE6CD;padding:6px 12px;border-radius:999px;margin-top:14px}
+.reais-badge svg{color:#2C6A2C}
+.gal{columns:4 250px;column-gap:16px}
+@media(max-width:900px){.gal{columns:3 220px}}
+@media(max-width:560px){.gal{columns:2 150px;column-gap:12px}}
+.gtile{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:16px;position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper-3);cursor:zoom-in;display:block;width:100%}
+@media(max-width:560px){.gtile{margin-bottom:12px}}
+.gtile img{width:100%;height:auto;display:block;transition:transform .6s var(--ease)}
+.gtile:hover img{transform:scale(1.05)}
+.gtile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 14px 12px;font-size:.82rem;font-weight:500;color:#fff;background:linear-gradient(0deg,rgba(18,22,28,.86),transparent);opacity:0;transform:translateY(6px);transition:opacity .28s var(--ease),transform .28s var(--ease)}
+.gtile:hover figcaption,.gtile:focus-visible figcaption{opacity:1;transform:none}
+.gtile .cat{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(18,22,28,.6);border:1px solid rgba(255,255,255,.22);padding:3px 8px;border-radius:2px;backdrop-filter:blur(3px)}
+/* lightbox */
+.lbx{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;background:rgba(12,14,18,.92);backdrop-filter:blur(4px);padding:24px}
+.lbx.on{display:flex}
+.lbx img{max-width:min(1100px,94vw);max-height:82vh;width:auto;height:auto;border-radius:6px;box-shadow:0 30px 80px -20px rgba(0,0,0,.7)}
+.lbx .cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;color:#E7ECF1;font-size:.9rem;padding:0 24px}
+.lbx .cap b{color:#fff}
+.lbx .x,.lbx .nav{position:absolute;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;cursor:pointer;border-radius:50%;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.lbx .x:hover,.lbx .nav:hover{background:rgba(255,255,255,.22);border-color:#fff}
+.lbx .x{top:18px;right:18px;width:44px;height:44px;font-size:1.5rem;line-height:1}
+.lbx .nav{top:50%;transform:translateY(-50%);width:50px;height:50px;font-size:1.8rem;line-height:1}
+.lbx .prev{left:18px}.lbx .next{right:18px}
+@media(max-width:640px){.lbx .nav{width:42px;height:42px}.lbx{padding:12px}}
+
 /* acessibilidade / movimento reduzido */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
@@ -481,6 +507,7 @@ body.swapping #app{opacity:0}
       <nav class="nav-links">
         <a href="#b-serv">Serviços</a>
         <a href="#b-obras">Obras</a>
+        <a href="#b-recentes">Recentes</a>
         <a href="#b-clientes">Clientes</a>
         <a href="#b-contacto" class="cta">Pedir orçamento</a>
       </nav>
@@ -509,7 +536,13 @@ body.swapping #app{opacity:0}
     <p class="ba-note" style="text-align:center;margin-top:22px">Imagens ilustrativas. Aqui entram as fotografias das obras da Sweet Sketch</p>
   </div></section>
 
-  <section class="sec" id="b-clientes"><div class="wrap">
+  <section class="sec" id="b-recentes"><div class="wrap">
+    <div class="sh mid"><span class="k">Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Estas são reais: microcimento, pladur, isolamento, coberturas e estruturas de madeira, feitos pela equipa da Sweet Sketch.</p>
+      <span class="reais-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotografias reais de obra</span></div>
+    <div class="gal" data-recentes></div>
+  </div></section>
+
+  <section class="sec alt" id="b-clientes"><div class="wrap">
     <div class="sh mid"><span class="k">Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
     <div class="tests" data-tests></div>
   </div></section>
@@ -572,6 +605,7 @@ body.swapping #app{opacity:0}
       <nav class="nav-links">
         <a href="#p-serv">Serviços</a>
         <a href="#p-obras">Obras</a>
+        <a href="#p-recentes">Recentes</a>
         <a href="#p-caso">Casos</a>
         <a href="#p-imobiliario">Imobiliário</a>
         <a href="#p-processo">Processo</a>
@@ -612,8 +646,14 @@ body.swapping #app{opacity:0}
     <p class="ba-note" style="margin-top:22px">Imagens ilustrativas. Aqui entram as fotografias das obras da Sweet Sketch</p>
   </div></section>
 
+  <section class="sec alt" id="p-recentes"><div class="wrap">
+    <div class="sh"><span class="k">03 / Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Ao contrário do portefólio acima, estas são reais: microcimento, pladur, isolamento pelo exterior, coberturas e estruturas de madeira, tudo feito pela equipa da Sweet Sketch.</p>
+      <span class="reais-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotografias reais de obra</span></div>
+    <div class="gal" data-recentes></div>
+  </div></section>
+
   <section class="sec"><div class="wrap">
-    <div class="sh"><span class="k">03 / Antes e depois</span><h2>Clique e veja a diferença.</h2><p>A prova mais rápida do valor de uma remodelação: o cliente vê em dois segundos.</p></div>
+    <div class="sh"><span class="k">04 / Antes e depois</span><h2>Clique e veja a diferença.</h2><p>A prova mais rápida do valor de uma remodelação: o cliente vê em dois segundos.</p></div>
     <div class="ba" id="ba">
       <img class="before" src="img/antes.jpg" alt="Interior antes da remodelação, em obra" width="1200" height="675" loading="lazy" decoding="async">
       <img class="after" src="img/depois.jpg" alt="O mesmo espaço depois da remodelação" width="1200" height="675" loading="lazy" decoding="async">
@@ -624,7 +664,7 @@ body.swapping #app{opacity:0}
   </div></section>
 
   <section class="sec alt" id="p-caso"><div class="wrap">
-    <div class="sh"><span class="k">04 / Caso de estudo</span><h2>Assim contamos uma obra vossa.</h2><p>Modelo de página. Cada obra ganha uma ficha destas, com fotografias, texto e números reais.</p></div>
+    <div class="sh"><span class="k">05 / Caso de estudo</span><h2>Assim contamos uma obra vossa.</h2><p>Modelo de página. Cada obra ganha uma ficha destas, com fotografias, texto e números reais.</p></div>
     <div class="case">
       <div class="img"><img src="img/caso.jpg" alt="Moradia com piscina, exemplo de caso de estudo" width="1400" height="800" loading="lazy" decoding="async"></div>
       <div class="txt">
@@ -643,7 +683,7 @@ body.swapping #app{opacity:0}
   </div></section>
 
   <section class="sec" id="p-imobiliario"><div class="wrap">
-    <div class="sh"><span class="k">05 / Para além da obra</span><h2>Também tratamos do imóvel.</h2></div>
+    <div class="sh"><span class="k">06 / Para além da obra</span><h2>Também tratamos do imóvel.</h2></div>
     <div class="case">
       <div class="img"><img src="img/serv-imobiliario.jpg" alt="Vista aérea de casas com telhados de telha" width="900" height="600" loading="lazy" decoding="async"></div>
       <div class="txt">
@@ -657,25 +697,25 @@ body.swapping #app{opacity:0}
   </div></section>
 
   <section class="sec tint" id="p-processo"><div class="wrap">
-    <div class="sh"><span class="k">06 / Como trabalhamos</span><h2>Um método transparente em cada etapa.</h2></div>
+    <div class="sh"><span class="k">07 / Como trabalhamos</span><h2>Um método transparente em cada etapa.</h2></div>
     <div class="proc" data-proc></div>
   </div></section>
 
   <section class="sec"><div class="wrap">
-    <div class="sh"><span class="k">07 / Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
+    <div class="sh"><span class="k">08 / Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
     <div class="tests" data-tests></div>
   </div></section>
 
   <section class="sec alt" id="p-blog"><div class="wrap">
     <div class="sh-row">
-      <div class="sh"><span class="k">08 / Blog</span><h2>Dicas de obra, sem letras pequenas.</h2></div>
+      <div class="sh"><span class="k">09 / Blog</span><h2>Dicas de obra, sem letras pequenas.</h2></div>
       <a class="btn b-line" href="#p-blog">Ver todos os artigos <span class="arw">→</span></a>
     </div>
     <div class="blog" data-blog></div>
   </div></section>
 
   <section class="sec contact" id="p-contacto"><div class="wrap">
-    <div class="sh"><span class="k">09 / Pedir orçamento</span><h2>Vamos falar da sua obra.</h2><p>Anexe plantas e escolha se quer visita técnica gratuita. Respondemos em 24 horas.</p></div>
+    <div class="sh"><span class="k">10 / Pedir orçamento</span><h2>Vamos falar da sua obra.</h2><p>Anexe plantas e escolha se quer visita técnica gratuita. Respondemos em 24 horas.</p></div>
     <div class="cgrid">
       <form class="form" onsubmit="return false">
         <div class="two">
@@ -827,6 +867,28 @@ var ARTIGOS = [
 
 var MARQUEE = ['Construção de edifícios','Remodelações e pinturas','Instalações elétricas','Águas e esgotos','Climatização','Coberturas','Carpintaria e caixilharia','Demolição','Mediação imobiliária','De Grândola a Lisboa'];
 
+/* Fotografias REAIS de obra da Sweet Sketch. w/h reais para evitar saltos de layout. */
+var RECENTES = [
+  {img:'recente-18.jpg', cat:'Madeira',      t:'Estrutura de madeira com cobertura de colmo', w:1400, h:788},
+  {img:'recente-13.jpg', cat:'Isolamento',   t:'Isolamento térmico pelo exterior (cápoto)',   w:1400, h:788},
+  {img:'recente-17.jpg', cat:'Madeira',      t:'Apoio em madeira com cobertura de colmo',     w:1400, h:788},
+  {img:'recente-11.jpg', cat:'Pladur',       t:'Parede técnica com recuperador de calor',     w:1400, h:788},
+  {img:'recente-07.jpg', cat:'Pladur',       t:'Instalação de recuperador e tetos em pladur', w:788,  h:1400},
+  {img:'recente-15.jpg', cat:'Coberturas',   t:'Cobertura: impermeabilização e armadura',     w:1400, h:788},
+  {img:'recente-14.jpg', cat:'Microcimento', t:'Sala ampla com pavimento em microcimento',    w:1400, h:788},
+  {img:'recente-12.jpg', cat:'Microcimento', t:'Quarto com pavimento em microcimento',        w:1131, h:1400},
+  {img:'recente-08.jpg', cat:'Pladur',       t:'Teto em pladur com clarabóia',                w:788,  h:1400},
+  {img:'recente-09.jpg', cat:'Pladur',       t:'Teto em pladur hidrófugo',                    w:1400, h:788},
+  {img:'recente-10.jpg', cat:'Pladur',       t:'Tetos falsos em pladur',                      w:788,  h:1400},
+  {img:'recente-16.jpg', cat:'Microcimento', t:'Varanda em microcimento',                     w:1179, h:1146},
+  {img:'recente-01.jpg', cat:'Microcimento', t:'Casa de banho em microcimento',               w:1054, h:1400},
+  {img:'recente-04.jpg', cat:'Microcimento', t:'Bases de duche em microcimento',              w:1054, h:1400},
+  {img:'recente-05.jpg', cat:'Microcimento', t:'Lavatório e nicho em microcimento',           w:1054, h:1400},
+  {img:'recente-02.jpg', cat:'Microcimento', t:'Lavatório em microcimento',                   w:1054, h:1400},
+  {img:'recente-03.jpg', cat:'Microcimento', t:'Móvel de apoio em microcimento',              w:1050, h:1400},
+  {img:'recente-06.jpg', cat:'Microcimento', t:'Paredes e nicho em microcimento',             w:1054, h:1400}
+];
+
 /* ─────────── construtores de blocos ─────────── */
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -834,6 +896,55 @@ document.querySelectorAll('[data-marquee]').forEach(function(el){
   var one = MARQUEE.map(function(m){ return '<span>' + esc(m) + '</span>'; }).join('');
   el.innerHTML = one + one;
 });
+
+/* galeria de obras recentes (fotografias reais) + lightbox */
+document.querySelectorAll('[data-recentes]').forEach(function(el){
+  el.innerHTML = RECENTES.map(function(o, i){
+    return '<figure class="gtile" tabindex="0" role="button" aria-label="Ampliar: ' + esc(o.t) + '" data-i="' + i + '">'
+      + '<img src="img/' + o.img + '" alt="' + esc(o.t) + '" width="' + o.w + '" height="' + o.h + '" loading="lazy" decoding="async">'
+      + '<span class="cat">' + esc(o.cat) + '</span>'
+      + '<figcaption>' + esc(o.t) + '</figcaption></figure>';
+  }).join('');
+});
+(function(){
+  var gals = document.querySelectorAll('[data-recentes]');
+  if(!gals.length) return;
+  var box = document.createElement('div');
+  box.className = 'lbx';
+  box.innerHTML = '<button class="x" aria-label="Fechar">×</button>'
+    + '<button class="nav prev" aria-label="Anterior">‹</button>'
+    + '<button class="nav next" aria-label="Seguinte">›</button>'
+    + '<img alt=""><div class="cap"></div>';
+  document.body.appendChild(box);
+  var bImg = box.querySelector('img'), bCap = box.querySelector('.cap'), idx = 0;
+  function show(i){
+    idx = (i + RECENTES.length) % RECENTES.length;
+    var o = RECENTES[idx];
+    bImg.src = 'img/' + o.img; bImg.alt = o.t;
+    bCap.innerHTML = '<b>' + esc(o.t) + '</b> · ' + esc(o.cat);
+  }
+  function open(i){ show(i); box.classList.add('on'); document.body.style.overflow = 'hidden'; }
+  function close(){ box.classList.remove('on'); document.body.style.overflow = ''; }
+  gals.forEach(function(g){
+    g.addEventListener('click', function(e){
+      var t = e.target.closest('.gtile'); if(t) open(+t.getAttribute('data-i'));
+    });
+    g.addEventListener('keydown', function(e){
+      var t = e.target.closest('.gtile');
+      if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); open(+t.getAttribute('data-i')); }
+    });
+  });
+  box.querySelector('.x').addEventListener('click', close);
+  box.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
+  box.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
+  box.addEventListener('click', function(e){ if(e.target === box) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!box.classList.contains('on')) return;
+    if(e.key === 'Escape') close();
+    else if(e.key === 'ArrowLeft') show(idx - 1);
+    else if(e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
 
 document.querySelectorAll('[data-serv]').forEach(function(el){
   el.innerHTML = SERVICOS.map(function(s){

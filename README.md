@@ -28,10 +28,12 @@ marca/          kit do logótipo para uso fora do site
 O `index.html` contém três vistas comutadas por JavaScript:
 
 1. **Seletor** — as duas propostas lado a lado, com preços
-2. **Versão Base**, 850 € — hero, serviços, portefólio de 6 obras, testemunhos, contacto
+2. **Versão Base**, 850 € — hero, serviços, portefólio de 6 obras, obras recentes, testemunhos, contacto
 3. **Versão Completa**, 1.200 € — tudo o da Base mais portefólio de 12 obras filtrável, comparador antes/depois, caso de estudo, secção de imobiliário, processo, blog
 
-Todo o conteúdo das secções é gerado a partir de tabelas de dados no topo do `<script>` (`SLIDES`, `SERVICOS`, `OBRAS`, `PROCESSO`, `TESTS`, `ARTIGOS`, `MARQUEE`). Para mudar textos ou fotografias, edite essas tabelas, não o HTML.
+A secção **Obras recentes** (`RECENTES`) é a única com **fotografias reais** das obras da Sweet Sketch: galeria masonry com lightbox, categorizada por microcimento, pladur, isolamento, coberturas e madeira. O portefólio acima ainda usa imagens ilustrativas.
+
+Todo o restante conteúdo é gerado a partir de tabelas de dados no topo do `<script>` (`SLIDES`, `SERVICOS`, `OBRAS`, `RECENTES`, `PROCESSO`, `TESTS`, `ARTIGOS`, `MARQUEE`). Para mudar textos ou fotografias, edite essas tabelas, não o HTML.
 
 ## Publicar na Hostinger
 
@@ -57,7 +59,7 @@ O site está marcado como demonstração porque parte do conteúdo é de exemplo
 
 - [ ] Telefone, email e morada exata
 - [ ] Número de alvará
-- [ ] Fotografias de obras reais (o portefólio usa fotografias ilustrativas)
+- [x] Fotografias de obras reais — 18 fotografias na secção "Obras recentes" (o portefólio de cima continua ilustrativo)
 - [ ] Testemunhos de clientes
 - [ ] Números concretos: obras concluídas, m² construídos, dimensão da equipa
 - [ ] Confirmar as promessas "resposta em 24 horas" e "visita técnica gratuita"
