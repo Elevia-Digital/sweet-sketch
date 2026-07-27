@@ -1,12 +1,12 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="pt">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Sweet Sketch, Unipessoal Lda. Construção de edifícios, remodelações e instalações técnicas de Grândola a Lisboa. Proposta de website em duas versões.">
+<meta name="description" content="Sweet Sketch, Unipessoal Lda. Construção de edifícios, remodelações e instalações técnicas de Grândola a Lisboa.">
 <meta name="theme-color" content="#2C313B">
-<title>Sweet Sketch, Unipessoal Lda · Propostas de Website</title>
+<title>Sweet Sketch, Unipessoal Lda · Construtora em Grândola</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,9 +71,6 @@ button{font-family:inherit}
 .b-line{border-color:var(--line);color:var(--ink);background:var(--paper)}
 .b-line:hover{border-color:var(--ink);transform:translateY(-2px)}
 
-/* ═════════════ troca de vista: contínua, sem corte seco ═════════════ */
-#app{transition:opacity .2s var(--ease)}
-body.swapping #app{opacity:0}
 .view{display:none}
 .view.active{display:block}
 
@@ -83,67 +80,7 @@ body.swapping #app{opacity:0}
 .logo.stacked img{height:auto;width:300px}
 .foot .logo img{height:32px}
 
-/* ═══════════════════════════ SELETOR ═══════════════════════════ */
-#v-chooser{background:var(--paper-2)}
-.ch-top{position:relative;background:var(--ink-2);color:#fff;overflow:hidden;padding:66px 0 130px}
-.ch-top::before{content:"";position:absolute;inset:0;background:
-   radial-gradient(90% 120% at 82% -10%,rgba(229,162,56,.20),transparent 58%),
-   radial-gradient(70% 90% at 8% 110%,rgba(51,113,156,.22),transparent 60%)}
-.ch-top .wrap{position:relative;z-index:2;text-align:center}
-.ch-top .k{color:var(--amber-x);justify-content:center}
-.ch-top h1{color:#fff;font-size:clamp(2.05rem,5.2vw,3.55rem);margin:20px auto 0;max-width:800px;text-wrap:balance}
-.ch-top h1 em{font-style:normal;color:var(--amber-x)}
-.ch-top .sub{margin:20px auto 0;max-width:600px;color:#C7CFD8;font-size:1.08rem}
-.ch-logo{margin-bottom:30px}
-
-.ch-rot{margin:34px auto 0;max-width:700px;min-height:64px;display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap}
-.ch-rot .tag{font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#241703;background:var(--amber-x);padding:6px 12px;border-radius:2px;white-space:nowrap}
-.ch-rot .txt{font-size:1.02rem;color:#E3E8ED;text-align:left;max-width:520px}
-.ch-fade{transition:opacity .42s var(--ease),transform .42s var(--ease)}
-.ch-fade.out{opacity:0;transform:translateY(-7px)}
-@media(max-width:620px){.ch-rot{flex-direction:column;gap:10px}.ch-rot .txt{text-align:center;font-size:.97rem}}
-.ch-dots{display:flex;gap:7px;justify-content:center;margin-top:18px}
-.ch-dots i{width:7px;height:7px;border-radius:9px;background:rgba(255,255,255,.28);transition:width .35s var(--ease),background .35s var(--ease);cursor:pointer}
-.ch-dots i.on{background:var(--amber-x);width:24px}
-
-.ch-cards{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:-90px;padding-bottom:80px;position:relative;z-index:3;align-items:stretch}
-@media(max-width:860px){.ch-cards{grid-template-columns:1fr;margin-top:-70px}}
-.ch-card{display:flex;flex-direction:column;border-radius:9px;overflow:hidden;position:relative;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 70px -40px rgba(29,34,42,.5);transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
-.ch-card:hover{transform:translateY(-6px);box-shadow:0 44px 90px -40px rgba(29,34,42,.55)}
-.ch-card.prem{background:var(--ink-2);border-color:#3B424E;box-shadow:0 30px 70px -38px rgba(44,49,59,.9)}
-.ch-prev{position:relative;aspect-ratio:16/7;overflow:hidden;background:var(--ink)}
-.ch-prev img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-.ch-card:hover .ch-prev img{transform:scale(1.05)}
-.ch-prev::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,24,31,.86),rgba(20,24,31,.12) 65%)}
-.ch-prev .lab{position:absolute;left:16px;bottom:13px;z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
-.ch-tag{position:absolute;top:13px;right:15px;z-index:3;font-family:var(--mono);font-size:.6rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:6px 12px;border-radius:2px;color:#241703;background:var(--amber-x)}
-.ch-card:not(.prem) .ch-tag{color:#fff;background:rgba(29,34,42,.82);backdrop-filter:blur(4px)}
-.ch-body{padding:32px 34px 34px;display:flex;flex-direction:column;flex:1}
-.ch-pn{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
-.ch-card.prem .ch-pn{color:var(--amber-x)}
-.ch-price{display:flex;align-items:baseline;gap:7px;margin-top:13px}
-.ch-price .amt{font-family:var(--display);font-weight:700;font-size:3.4rem;line-height:1;letter-spacing:-.04em;color:var(--ink);font-variant-numeric:tabular-nums}
-.ch-price .cur{font-family:var(--display);font-weight:500;font-size:1.5rem;color:var(--ink)}
-.ch-price .per{font-family:var(--mono);font-size:.63rem;letter-spacing:.06em;margin-left:5px;color:var(--txt-l)}
-.ch-card.prem .ch-price .amt,.ch-card.prem .ch-price .cur{color:#F4F6F8}
-.ch-tl{margin-top:14px;font-weight:600;font-size:1.05rem;color:var(--ink)}
-.ch-card.prem .ch-tl{color:#F4F6F8}
-.ch-card ul{list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px;flex:1}
-.ch-card.prem ul{border-top-color:#3B424E}
-.ch-card li{display:flex;gap:11px;font-size:.91rem;color:var(--txt)}
-.ch-card.prem li{color:#BAC2CB}
-.ch-card li svg{flex:none;margin-top:5px;color:var(--amber)}
-.ch-card.prem li svg{color:var(--amber-x)}
-.ch-open{margin-top:24px;width:100%;padding:16px}
-
-/* ═══════════════════════════ BARRA DE DEMO ═══════════════════════════ */
-.demobar{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 22px;background:var(--ink);color:#fff;flex-wrap:wrap}
-.demobar .side{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.demobar .mini{font-size:.78rem;font-weight:500;padding:8px 15px;border:1px solid #444C58;border-radius:3px;cursor:pointer;background:transparent;color:#EDF0F3;transition:border-color .2s,background .2s}
-.demobar .mini:hover{border-color:var(--amber-l);background:rgba(229,162,56,.1)}
-.demobar .mini.sw{color:var(--amber-x);border-color:rgba(229,162,56,.45)}
-.demobar .pill{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;padding:6px 12px;border-radius:2px;color:#C7CFD8;border:1px solid #3A424E}
-@media(max-width:640px){.demobar{padding:9px 16px;font-size:.9em}.demobar .pill{display:none}}
+/* ═══════════════════════════ AVISO DE DEMONSTRAÇÃO ═══════════════════════════ */
 .demonote{background:#F6EEDC;border-bottom:1px solid #E7D9BB;color:#6B5417;font-size:.8rem;padding:9px 22px;text-align:center}
 .demonote b{color:#4A3A0E;font-weight:600}
 
@@ -413,188 +350,9 @@ body.swapping #app{opacity:0}
 <div id="app">
 
 <!-- ══════════════════════════════════════════════════════════════
-     SELETOR DE PROPOSTAS
+     SITE SWEET SKETCH
      ══════════════════════════════════════════════════════════════ -->
-<section class="view active" id="v-chooser">
-  <div class="ch-top">
-    <div class="wrap">
-      <div class="ch-logo">
-        <span class="logo stacked">
-          <img src="img/logo-claro.png" alt="Sweet Sketch Lda. Construtora" width="584" height="296">
-        </span>
-      </div>
-      <span class="k">Proposta de website · duas versões</span>
-      <h1>Duas propostas. Dois orçamentos. <em>Escolha e veja ao vivo.</em></h1>
-      <p class="sub">Uma versão essencial e uma versão completa, ambas navegáveis a sério, com fotografias, obras e formulários a funcionar.</p>
-      <div class="ch-rot" id="rot">
-        <span class="tag ch-fade" id="rotTag">Confiança</span>
-        <span class="txt ch-fade" id="rotTxt">75% dos clientes avaliam a sua empresa pelo site, antes sequer de ligarem.</span>
-      </div>
-      <div class="ch-dots" id="rotDots"></div>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="ch-cards">
-      <article class="ch-card">
-        <span class="ch-tag">Entrada</span>
-        <div class="ch-prev">
-          <img src="img/serv-construcao.jpg" alt="Moradia moderna construída de raiz" width="900" height="394" loading="lazy" decoding="async">
-          <span class="lab">Versão Base · clara e direta</span>
-        </div>
-        <div class="ch-body">
-          <div class="ch-pn">Versão Base</div>
-          <div class="ch-price"><span class="amt">850</span><span class="cur">€</span><span class="per">único · +IVA</span></div>
-          <div class="ch-tl">O essencial, claro e profissional.</div>
-          <ul>
-            <li>{k} Site de 5 a 6 páginas essenciais</li>
-            <li>{k} Fotografias reais das suas obras</li>
-            <li>{k} Galeria de obras (6 a 12 projetos)</li>
-            <li>{k} Formulário de pedido de orçamento</li>
-            <li>{k} Telefone e WhatsApp clicáveis</li>
-            <li>{k} Responsivo + SEO base + Google</li>
-            <li>{k} Entrega em 2 a 3 semanas</li>
-          </ul>
-          <button class="btn b-ink ch-open" data-go="base">Ver a Versão Base <span class="arw">→</span></button>
-        </div>
-      </article>
-
-      <article class="ch-card prem">
-        <span class="ch-tag">Recomendado</span>
-        <div class="ch-prev">
-          <img src="img/caso.jpg" alt="Moradia premium com piscina ao entardecer" width="1400" height="613" loading="lazy" decoding="async">
-          <span class="lab">Versão Completa · premium e imersiva</span>
-        </div>
-        <div class="ch-body">
-          <div class="ch-pn">Versão Completa</div>
-          <div class="ch-price"><span class="amt">1.200</span><span class="cur">€</span><span class="per">único · +IVA</span></div>
-          <div class="ch-tl">A montra de quem vende pela execução.</div>
-          <ul>
-            <li>{k} Tudo o da Base, sem limite de páginas</li>
-            <li>{k} Portefólio filtrável com 12 obras</li>
-            <li>{k} Comparador <b>antes / depois</b> interativo</li>
-            <li>{k} Casos de estudo com métricas reais</li>
-            <li>{k} Blog + processo de obra + testemunhos</li>
-            <li>{k} SEO local avançado + CRM + Analytics</li>
-            <li>{k} Entrega em 4 a 6 semanas</li>
-          </ul>
-          <button class="btn b-amber ch-open" data-go="premium">Ver a Versão Completa <span class="arw">→</span></button>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════════
-     VERSÃO BASE
-     ══════════════════════════════════════════════════════════════ -->
-<section class="view" id="v-base">
-  <div class="demobar">
-    <span class="side">
-      <button class="mini" data-go="chooser">← Voltar às propostas</button>
-      <span class="pill">Versão Base · 850 €</span>
-    </span>
-    <button class="mini sw" data-go="premium">Ver Versão Completa →</button>
-  </div>
-  <div class="demonote"><b>Demonstração.</b> As fotografias, os testemunhos e os números são de exemplo. Os dados da empresa (nome, NIF, CAE, localização e serviços) são reais.</div>
-
-  <header class="nav" data-nav>
-    <div class="wrap">
-      <a class="logo" href="#b-top">
-        <img src="img/logo-h-escuro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
-      </a>
-      <nav class="nav-links">
-        <a href="#b-serv">Serviços</a>
-        <a href="#b-obras">Obras</a>
-        <a href="#b-recentes">Recentes</a>
-        <a href="#b-clientes">Clientes</a>
-        <a href="#b-contacto" class="cta">Pedir orçamento</a>
-      </nav>
-    </div>
-  </header>
-
-  <div id="b-top" class="hero" data-carousel="base"></div>
-
-  <div class="trust"><div class="track" data-marquee></div></div>
-
-  <div class="stats"><div class="wrap in">
-    <div class="stat"><div class="n">2022</div><div class="l">Constituída em maio</div></div>
-    <div class="stat"><div class="n"><span data-count="20">0</span><em>+</em></div><div class="l">Especialidades de obra</div></div>
-    <div class="stat"><div class="n">41000</div><div class="l">CAE · Construção de edifícios</div></div>
-    <div class="stat"><div class="n word">Grândola</div><div class="l">De Grândola a Lisboa</div></div>
-  </div></div>
-
-  <section class="sec" id="b-serv"><div class="wrap">
-    <div class="sh mid"><span class="k">O que fazemos</span><h2>Da estrutura ao interruptor, tudo em casa.</h2><p>Construção de edifícios residenciais e não residenciais, com as instalações e os acabamentos feitos pela mesma equipa.</p></div>
-    <div class="serv" data-serv></div>
-  </div></section>
-
-  <section class="sec alt" id="b-obras"><div class="wrap">
-    <div class="sh mid"><span class="k">Portefólio</span><h2>Obras que falam por nós.</h2><p>Uma seleção do que a Sweet Sketch constrói e remodela, de Grândola a Lisboa.</p></div>
-    <div class="obras" data-obras="6"></div>
-    <p class="ba-note" style="text-align:center;margin-top:22px">Imagens ilustrativas. Aqui entram as fotografias das obras da Sweet Sketch</p>
-  </div></section>
-
-  <section class="sec" id="b-recentes"><div class="wrap">
-    <div class="sh mid"><span class="k">Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Estas são reais: microcimento, pladur, isolamento, coberturas e estruturas de madeira, feitos pela equipa da Sweet Sketch.</p>
-      <span class="reais-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotografias reais de obra</span></div>
-    <div class="gal" data-recentes></div>
-  </div></section>
-
-  <section class="sec alt" id="b-clientes"><div class="wrap">
-    <div class="sh mid"><span class="k">Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
-    <div class="tests" data-tests></div>
-  </div></section>
-
-  <section class="sec contact" id="b-contacto"><div class="wrap">
-    <div class="sh"><span class="k">Peça o seu orçamento</span><h2>Conte-nos o que quer fazer.</h2><p>Respondemos em 24 horas, sempre com uma pessoa do lado de cá.</p></div>
-    <div class="cgrid">
-      <form class="form" onsubmit="return false">
-        <div class="two">
-          <div class="field"><label>Nome</label><input placeholder="O seu nome"></div>
-          <div class="field"><label>Telefone</label><input placeholder="+351 ___ ___ ___"></div>
-        </div>
-        <div class="field"><label>Email</label><input type="email" placeholder="email@exemplo.pt"></div>
-        <div class="two">
-          <div class="field"><label>Tipo de obra</label><select><option>Construção de edifício</option><option>Remodelação e acabamentos</option><option>Pinturas</option><option>Instalações elétricas</option><option>Águas, esgotos e climatização</option><option>Telecomunicações e segurança</option><option>Carpintaria e coberturas</option><option>Demolição e terraplenagem</option><option>Imobiliário</option></select></div>
-          <div class="field"><label>Localidade</label><input placeholder="Ex.: Melides"></div>
-        </div>
-        <div class="field"><label>Mensagem</label><textarea rows="3" placeholder="Descreva a sua obra"></textarea></div>
-        <button class="btn b-amber" type="submit">Enviar pedido <span class="arw">→</span></button>
-      </form>
-      <div>
-        <div class="map" data-map></div>
-        <div class="cinfo" data-cinfo></div>
-      </div>
-    </div>
-  </div></section>
-
-  <footer class="foot"><div class="wrap ft">
-    <span class="logo">
-      <img src="img/logo-h-claro.png" alt="Sweet Sketch Lda. Construtora" width="942" height="200">
-    </span>
-    <span class="fl">© 2026 Sweet Sketch, Unipessoal Lda · NIF 516997904 · Grândola, Setúbal</span>
-  </div></footer>
-
-  <div class="sticky-cta">
-    <a class="btn b-ghost" href="#b-obras">Ver obras</a>
-    <a class="btn b-amber" href="#b-contacto">Pedir orçamento</a>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════════════════════
-     VERSÃO COMPLETA
-     ══════════════════════════════════════════════════════════════ -->
-<section class="view" id="v-premium">
-  <div class="demobar">
-    <span class="side">
-      <button class="mini" data-go="chooser">← Voltar às propostas</button>
-      <span class="pill">Versão Completa · 1.200 €</span>
-    </span>
-    <button class="mini sw" data-go="base">Ver Versão Base →</button>
-  </div>
+<section class="view active" id="v-premium">
   <div class="demonote"><b>Demonstração.</b> As fotografias, os testemunhos e os números são de exemplo. Os dados da empresa (nome, NIF, CAE, localização e serviços) são reais.</div>
 
   <header class="nav" data-nav>
@@ -762,53 +520,6 @@ body.swapping #app{opacity:0}
 "use strict";
 var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ─────────── ícone de visto nas listas do seletor ─────────── */
-var TICK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
-document.querySelectorAll('.ch-card li').forEach(function(li){
-  li.innerHTML = TICK + li.innerHTML.replace(/^\{k\}\s*/, '');
-});
-
-/* ─────────── rotador de argumentos (seletor) ─────────── */
-var FACTS = [
-  {tag:'Confiança', txt:'75% dos clientes avaliam a sua empresa pelo site, antes sequer de ligarem.'},
-  {tag:'Conversão', txt:'Um site bem estruturado converte 3 a 5% das visitas. Um site fraco, menos de 1%.'},
-  {tag:'Telemóvel', txt:'A maioria procura "construtora perto de mim" no telemóvel e decide em segundos.'},
-  {tag:'Prova',     txt:'As fotografias reais das vossas obras são o que mais gera confiança.'},
-  {tag:'Google',    txt:'Aparecer nas pesquisas locais traz pedidos de orçamento todas as semanas.'},
-  {tag:'Retorno',   txt:'Uma única obra adjudicada paga o site muitas vezes.'}
-];
-(function(){
-  var rot = document.getElementById('rot'), tag = document.getElementById('rotTag'),
-      txt = document.getElementById('rotTxt'), dots = document.getElementById('rotDots');
-  if(!rot || !dots) return;
-  FACTS.forEach(function(_, i){
-    var d = document.createElement('i');
-    if(i === 0) d.className = 'on';
-    d.addEventListener('click', function(){ go(i); });
-    dots.appendChild(d);
-  });
-  var i = 0, timer = null;
-  function paint(){
-    tag.textContent = FACTS[i].tag;
-    txt.textContent = FACTS[i].txt;
-    dots.querySelectorAll('i').forEach(function(d, n){ d.classList.toggle('on', n === i); });
-  }
-  function go(n){
-    i = (n + FACTS.length) % FACTS.length;
-    if(reduce){ paint(); return; }
-    tag.classList.add('out'); txt.classList.add('out');
-    setTimeout(function(){
-      paint();
-      tag.classList.remove('out'); txt.classList.remove('out');
-    }, 430);
-    restart();
-  }
-  function restart(){ clearTimeout(timer); if(!reduce) timer = setTimeout(function(){ go(i + 1); }, 5200); }
-  restart();
-  rot.addEventListener('mouseenter', function(){ clearTimeout(timer); });
-  rot.addEventListener('mouseleave', restart);
-})();
-
 /* ─────────── dados ─────────── */
 var SLIDES = [
   {img:'hero-construcao.jpg',  cat:'Construção de edifícios',  h:'Construímos a sua casa, do terreno à chave na mão.',   s:'Desde Grândola, a construir edifícios residenciais e não residenciais até Lisboa e arredores.'},
@@ -948,7 +659,7 @@ document.querySelectorAll('[data-recentes]').forEach(function(el){
 
 document.querySelectorAll('[data-serv]').forEach(function(el){
   el.innerHTML = SERVICOS.map(function(s){
-    var anchor = el.closest('#v-base') ? '#b-contacto' : '#p-contacto';
+    var anchor = '#p-contacto';
     return '<a class="scard" href="' + anchor + '">'
       + '<img src="img/' + s.img + '" alt="' + esc(s.t) + '" width="900" height="600" loading="lazy" decoding="async">'
       + '<span class="in"><span class="sn">' + s.n + '</span>'
@@ -1216,47 +927,16 @@ document.addEventListener('click', function(e){
   var t = document.querySelector(id);
   if(!t) return;
   e.preventDefault();
-  var bar = a.closest('.view') ? a.closest('.view').querySelector('.demobar') : null;
-  var off = (bar ? bar.offsetHeight : 0) + 78 + 8;
+  var off = 78 + 8;
   window.scrollTo({top: Math.max(0, t.getBoundingClientRect().top + window.scrollY - off), behavior: reduce ? 'auto' : 'smooth'});
 });
 
-/* ─────────── troca de proposta: fade contínuo, sem corte ─────────── */
-var VIEWS = {chooser:'v-chooser', base:'v-base', premium:'v-premium'};
-function showView(name){
-  var next = document.getElementById(VIEWS[name]);
-  var cur  = document.querySelector('.view.active');
-  if(!next || cur === next) return;
-
-  Object.keys(carousels).forEach(function(k){ carousels[k].stop(); });
-
-  function swap(){
-    if(cur) cur.classList.remove('active');
-    next.classList.add('active');
-    window.scrollTo(0, 0);
-    if(carousels[name]) carousels[name].start();
-    requestAnimationFrame(function(){ document.body.classList.remove('swapping'); });
-  }
-
-  if(reduce){ swap(); return; }
-  document.body.classList.add('swapping');
-  setTimeout(swap, 200);
-}
-document.addEventListener('click', function(e){
-  var el = e.target.closest('[data-go]');
-  if(!el) return;
-  e.preventDefault();
-  showView(el.getAttribute('data-go'));
-});
-
-/* o carrossel só corre na vista visível */
-Object.keys(carousels).forEach(function(k){ carousels[k].stop(); });
+/* ─────────── carrossel: arranca já e pausa com o separador em segundo plano ─────────── */
+Object.keys(carousels).forEach(function(k){ carousels[k].start(); });
 document.addEventListener('visibilitychange', function(){
-  var active = document.querySelector('.view.active');
-  if(!active) return;
-  var key = active.id === 'v-base' ? 'base' : (active.id === 'v-premium' ? 'premium' : null);
-  if(!key || !carousels[key]) return;
-  document.hidden ? carousels[key].stop() : carousels[key].start();
+  Object.keys(carousels).forEach(function(k){
+    document.hidden ? carousels[k].stop() : carousels[k].start();
+  });
 });
 })();
 </script>
