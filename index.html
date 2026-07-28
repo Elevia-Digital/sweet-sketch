@@ -263,15 +263,33 @@ button{font-family:inherit}
 /* blog */
 .blog{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 @media(max-width:880px){.blog{grid-template-columns:1fr}}
-.art{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--paper);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease)}
-.art:hover{transform:translateY(-5px);border-color:var(--ink);box-shadow:0 26px 48px -34px rgba(29,34,42,.5)}
+.art{border:1px solid var(--line);border-radius:7px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column;transition:box-shadow .3s var(--ease),border-color .3s var(--ease)}
+.art:hover{border-color:var(--line-d);box-shadow:0 26px 48px -34px rgba(29,34,42,.5)}
 .art .ai{aspect-ratio:16/9;overflow:hidden;background:var(--paper-3)}
 .art .ai img{width:100%;height:100%;object-fit:cover;transition:transform .75s var(--ease)}
-.art:hover .ai img{transform:scale(1.07)}
-.art .ab{padding:22px 24px 26px}
+.art:hover .ai img{transform:scale(1.05)}
+.art .ab{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
 .art .cat{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber)}
 .art h4{font-size:1.05rem;margin:11px 0 7px;line-height:1.28}
 .art p{font-size:.87rem;color:var(--txt-l)}
+/* nota expansível do artigo */
+.nota{margin-top:16px;border-top:1px solid var(--line);padding-top:4px}
+.nota summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:12px 0 4px;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);font-weight:500;user-select:none}
+.nota summary::-webkit-details-marker{display:none}
+.nota summary:hover{color:var(--ink)}
+.nota .chev{margin-left:auto;transition:transform .28s var(--ease);color:var(--txt-l)}
+.nota[open] .chev{transform:rotate(180deg)}
+.nota .menos{display:none}
+.nota[open] .mais{display:none}
+.nota[open] .menos{display:inline}
+.nota-corpo{font-size:.88rem;color:var(--txt);line-height:1.62;padding:6px 0 4px;animation:notaIn .3s var(--ease)}
+@keyframes notaIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.nota-corpo p{font-size:.88rem;color:var(--txt);margin:0 0 10px}
+.nota-corpo b{color:var(--ink);font-weight:600}
+.nota-corpo ul{margin:0 0 10px;padding-left:18px;display:flex;flex-direction:column;gap:7px}
+.nota-corpo li{font-size:.86rem}
+.nota-corpo li::marker{color:var(--amber)}
+.nota-corpo .nota-fim{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:.8rem;color:var(--txt-l);font-style:italic}
 
 /* contacto */
 .contact{background:var(--ink-2);color:#C3CBD4;position:relative;overflow:hidden}
@@ -318,6 +336,7 @@ button{font-family:inherit}
 @media(max-width:900px){.gal{columns:3 220px}}
 @media(max-width:560px){.gal{columns:2 150px;column-gap:12px}}
 .gtile{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:16px;position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper-3);cursor:zoom-in;display:block;width:100%}
+.gtile.hide{display:none}
 @media(max-width:560px){.gtile{margin-bottom:12px}}
 .gtile img{width:100%;height:auto;display:block;transition:transform .6s var(--ease)}
 .gtile:hover img{transform:scale(1.05)}
@@ -364,10 +383,8 @@ button{font-family:inherit}
         <a href="#p-serv">Serviços</a>
         <a href="#p-obras">Obras</a>
         <a href="#p-recentes">Recentes</a>
-        <a href="#p-caso">Casos</a>
-        <a href="#p-imobiliario">Imobiliário</a>
         <a href="#p-processo">Processo</a>
-        <a href="#p-blog">Blog</a>
+        <a href="#p-artigos">Artigos</a>
         <a href="#p-contacto" class="cta">Pedir orçamento</a>
       </nav>
     </div>
@@ -407,6 +424,7 @@ button{font-family:inherit}
   <section class="sec alt" id="p-recentes"><div class="wrap">
     <div class="sh"><span class="k">03 / Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Ao contrário do portefólio acima, estas são reais: microcimento, pladur, isolamento pelo exterior, coberturas e estruturas de madeira, tudo feito pela equipa da Sweet Sketch.</p>
       <span class="reais-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotografias reais de obra</span></div>
+    <div class="filters" data-gfilters></div>
     <div class="gal" data-recentes></div>
   </div></section>
 
@@ -421,59 +439,23 @@ button{font-family:inherit}
     <p class="ba-note">Clique em qualquer ponto da imagem. Imagens ilustrativas, na versão final entram fotografias das vossas obras</p>
   </div></section>
 
-  <section class="sec alt" id="p-caso"><div class="wrap">
-    <div class="sh"><span class="k">05 / Caso de estudo</span><h2>Assim contamos uma obra vossa.</h2><p>Modelo de página. Cada obra ganha uma ficha destas, com fotografias, texto e números reais.</p></div>
-    <div class="case">
-      <div class="img"><img src="img/caso.jpg" alt="Moradia com piscina, exemplo de caso de estudo" width="1400" height="800" loading="lazy" decoding="async"></div>
-      <div class="txt">
-        <span class="k">Exemplo · Moradia em Melides</span>
-        <h3>Do terreno em bruto à casa entregue.</h3>
-        <div class="blk"><b>Desafio</b><p>Aqui entra o ponto de partida: o terreno, o edifício existente, o prazo ou a restrição que tornou a obra difícil.</p></div>
-        <div class="blk"><b>Solução</b><p>O que a Sweet Sketch propôs e executou, com as decisões técnicas que fizeram a diferença.</p></div>
-        <div class="blk"><b>Resultado</b><p>O que o cliente recebeu no fim, e porque é que voltaria a contratar.</p></div>
-        <div class="metrics">
-          <div><div class="v">00</div><div class="t">meses de obra</div></div>
-          <div><div class="v">000</div><div class="t">m² intervencionados</div></div>
-          <div><div class="v">00</div><div class="t">especialidades</div></div>
-        </div>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="sec" id="p-imobiliario"><div class="wrap">
-    <div class="sh"><span class="k">06 / Para além da obra</span><h2>Também tratamos do imóvel.</h2></div>
-    <div class="case">
-      <div class="img"><img src="img/serv-imobiliario.jpg" alt="Vista aérea de casas com telhados de telha" width="900" height="600" loading="lazy" decoding="async"></div>
-      <div class="txt">
-        <span class="k">Imobiliário</span>
-        <h3>Comprar, vender, arrendar e administrar.</h3>
-        <div class="blk"><b>Compra e venda</b><p>Compra e venda de bens imobiliários, com quem conhece a construção por dentro.</p></div>
-        <div class="blk"><b>Arrendamento e mediação</b><p>Arrendamento de imóveis e mediação imobiliária, do Alentejo Litoral a Lisboa.</p></div>
-        <div class="blk"><b>Administração</b><p>Administração de imóveis por conta de outrem, para quem não vive por perto.</p></div>
-      </div>
-    </div>
-  </div></section>
-
   <section class="sec tint" id="p-processo"><div class="wrap">
-    <div class="sh"><span class="k">07 / Como trabalhamos</span><h2>Um método transparente em cada etapa.</h2></div>
+    <div class="sh"><span class="k">05 / Como trabalhamos</span><h2>Um método transparente em cada etapa.</h2></div>
     <div class="proc" data-proc></div>
   </div></section>
 
   <section class="sec"><div class="wrap">
-    <div class="sh"><span class="k">08 / Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
+    <div class="sh"><span class="k">06 / Clientes</span><h2>Quem já construiu connosco.</h2><p>Conteúdo de exemplo. Na versão final entram as avaliações reais dos vossos clientes.</p></div>
     <div class="tests" data-tests></div>
   </div></section>
 
-  <section class="sec alt" id="p-blog"><div class="wrap">
-    <div class="sh-row">
-      <div class="sh"><span class="k">09 / Blog</span><h2>Dicas de obra, sem letras pequenas.</h2></div>
-      <a class="btn b-line" href="#p-blog">Ver todos os artigos <span class="arw">→</span></a>
-    </div>
+  <section class="sec alt" id="p-artigos"><div class="wrap">
+    <div class="sh"><span class="k">07 / Artigos</span><h2>Dicas de obra, sem letras pequenas.</h2><p>Toque em "Saber mais" em cada artigo para abrir uma nota com ajuda prática.</p></div>
     <div class="blog" data-blog></div>
   </div></section>
 
   <section class="sec contact" id="p-contacto"><div class="wrap">
-    <div class="sh"><span class="k">10 / Pedir orçamento</span><h2>Vamos falar da sua obra.</h2><p>Anexe plantas e escolha se quer visita técnica gratuita. Respondemos em 24 horas.</p></div>
+    <div class="sh"><span class="k">08 / Pedir orçamento</span><h2>Vamos falar da sua obra.</h2><p>Anexe plantas e escolha se quer visita técnica gratuita. Respondemos em 24 horas.</p></div>
     <div class="cgrid">
       <form class="form" onsubmit="return false">
         <div class="two">
@@ -571,33 +553,59 @@ var TESTS = [
 ];
 
 var ARTIGOS = [
-  {img:'blog-1.jpg', cat:'Remodelações', t:'IVA a 6% nas obras em casa: quando se aplica?', d:'Em que condições a empreitada baixa de 23% para 6%.'},
-  {img:'blog-2.jpg', cat:'Construção',   t:'Quanto custa construir, de Grândola a Lisboa?', d:'Faixas de custo por m² e o que faz o preço variar.'},
-  {img:'blog-3.jpg', cat:'Instalações',  t:'Obra nova: o que decidir antes de fechar paredes.', d:'Eletricidade, águas e climatização não se remedeiam depois.'}
+  {img:'blog-1.jpg', cat:'Remodelações', t:'IVA a 6% nas obras em casa: quando se aplica?', d:'Em que condições a empreitada baixa de 23% para 6%.',
+   nota:'<p>O IVA reduzido de 6% (Continente) aplica-se a empreitadas de <b>remodelação, beneficiação, reparação e conservação</b> de imóveis de habitação. Não é para construção nova.</p>'
+     + '<ul><li>Cobre a mão de obra e os materiais incorporados, desde que os materiais não sejam a maior parte da fatura. Se os materiais pesarem mais do que a mão de obra, só a mão de obra fica a 6%.</li>'
+     + '<li>Ficam de fora: construção de raiz, piscinas, saunas e a simples manutenção de espaços verdes.</li>'
+     + '<li>O imóvel tem de ser de habitação. Escritórios e lojas não entram.</li>'
+     + '<li>Peça sempre fatura com a taxa discriminada.</li></ul>'
+     + '<p class="nota-fim">Informação geral. Confirme o seu caso com o contabilista.</p>'},
+  {img:'blog-2.jpg', cat:'Construção',   t:'Quanto custa construir, de Grândola a Lisboa?', d:'Faixas de custo por m² e o que faz o preço variar.',
+   nota:'<p>O custo de uma moradia nova mede-se por <b>euro por m² de área de construção</b> e varia muito com o nível de acabamento.</p>'
+     + '<ul><li>Os acabamentos mandam: o mesmo m² pode variar 40% ou mais só pela escolha de pavimentos, caixilharia, cozinha e casas de banho.</li>'
+     + '<li>O que não se vê também pesa: fundações, estrutura, isolamento e instalações.</li>'
+     + '<li>Fora do preço da obra ficam o terreno, o projeto e as licenças, as taxas camarárias e as ligações de água, luz e saneamento.</li>'
+     + '<li>Um orçamento fechado com caderno de encargos evita surpresas a meio.</li></ul>'
+     + '<p class="nota-fim">Peça-nos uma estimativa para o seu caso concreto.</p>'},
+  {img:'blog-3.jpg', cat:'Instalações',  t:'Obra nova: o que decidir antes de fechar paredes.', d:'Eletricidade, águas e climatização não se remedeiam depois.',
+   nota:'<p>Depois de fechar paredes e tetos, mexer nas instalações obriga a partir tudo outra vez. Decida isto <b>antes</b>:</p>'
+     + '<ul><li><b>Eletricidade:</b> onde ficam tomadas, interruptores, pontos de luz e o quadro. Ponha tomadas a mais nos sítios certos (cozinha, secretária, cabeceira).</li>'
+     + '<li><b>Águas e esgotos:</b> posição de louças, torneiras, máquinas e ralos.</li>'
+     + '<li><b>Climatização e ventilação:</b> por onde passam as condutas e onde ficam as unidades.</li>'
+     + '<li><b>Telecomunicações e rede:</b> pontos de TV e internet por cabo, e tubos de passagem para o futuro.</li>'
+     + '<li>Deixe tubos vazios para o que possa vir depois: painéis solares, carregador de carro, domótica.</li></ul>'
+     + '<p class="nota-fim">Tratamos de todas estas instalações com equipa própria.</p>'}
 ];
 
 var MARQUEE = ['Construção de edifícios','Remodelações e pinturas','Instalações elétricas','Águas e esgotos','Climatização','Coberturas','Carpintaria e caixilharia','Demolição','Mediação imobiliária','De Grândola a Lisboa'];
 
-/* Fotografias REAIS de obra da Sweet Sketch. w/h reais para evitar saltos de layout. */
+/* Fotografias REAIS de obra da Sweet Sketch, agrupadas por categoria. w/h reais evitam saltos de layout. */
+var RECFILTROS = [
+  {f:'madeira',      lbl:'Madeiras'},
+  {f:'isolamento',   lbl:'Isolamentos'},
+  {f:'microcimento', lbl:'Microcimentos'},
+  {f:'coberturas',   lbl:'Coberturas'},
+  {f:'pladur',       lbl:'Pladur'}
+];
 var RECENTES = [
-  {img:'recente-18.jpg', cat:'Madeira',      t:'Estrutura de madeira com cobertura de colmo', w:1400, h:788},
-  {img:'recente-13.jpg', cat:'Isolamento',   t:'Isolamento térmico pelo exterior (cápoto)',   w:1400, h:788},
-  {img:'recente-17.jpg', cat:'Madeira',      t:'Apoio em madeira com cobertura de colmo',     w:1400, h:788},
-  {img:'recente-11.jpg', cat:'Pladur',       t:'Parede técnica com recuperador de calor',     w:1400, h:788},
-  {img:'recente-07.jpg', cat:'Pladur',       t:'Instalação de recuperador e tetos em pladur', w:788,  h:1400},
-  {img:'recente-15.jpg', cat:'Coberturas',   t:'Cobertura: impermeabilização e armadura',     w:1400, h:788},
-  {img:'recente-14.jpg', cat:'Microcimento', t:'Cozinha ampla com pavimento em microcimento', w:1400, h:788},
-  {img:'recente-12.jpg', cat:'Microcimento', t:'Quarto com pavimento em microcimento',        w:1131, h:1400},
-  {img:'recente-08.jpg', cat:'Pladur',       t:'Teto em pladur com clarabóia',                w:788,  h:1400},
-  {img:'recente-09.jpg', cat:'Pladur',       t:'Teto em pladur hidrófugo',                    w:1400, h:788},
-  {img:'recente-10.jpg', cat:'Pladur',       t:'Tetos falsos em pladur',                      w:788,  h:1400},
-  {img:'recente-16.jpg', cat:'Microcimento', t:'Varanda em microcimento',                     w:1179, h:1146},
-  {img:'recente-01.jpg', cat:'Microcimento', t:'Casa de banho em microcimento',               w:1054, h:1400},
-  {img:'recente-04.jpg', cat:'Microcimento', t:'Bases de duche em microcimento',              w:1054, h:1400},
-  {img:'recente-05.jpg', cat:'Microcimento', t:'Lavatório e nicho em microcimento',           w:1054, h:1400},
-  {img:'recente-02.jpg', cat:'Microcimento', t:'Lavatório em microcimento',                   w:1054, h:1400},
-  {img:'recente-03.jpg', cat:'Microcimento', t:'Móvel de apoio em microcimento',              w:1050, h:1400},
-  {img:'recente-06.jpg', cat:'Microcimento', t:'Paredes e nicho em microcimento',             w:1054, h:1400}
+  {img:'recente-18.jpg', f:'madeira',      cat:'Madeiras',      t:'Estrutura de madeira com cobertura de colmo', w:1400, h:788},
+  {img:'recente-17.jpg', f:'madeira',      cat:'Madeiras',      t:'Apoio em madeira com cobertura de colmo',     w:1400, h:788},
+  {img:'recente-13.jpg', f:'isolamento',   cat:'Isolamentos',   t:'Isolamento térmico pelo exterior (cápoto)',   w:1400, h:788},
+  {img:'recente-14.jpg', f:'microcimento', cat:'Microcimentos', t:'Cozinha ampla com pavimento em microcimento', w:1400, h:788},
+  {img:'recente-12.jpg', f:'microcimento', cat:'Microcimentos', t:'Quarto com pavimento em microcimento',        w:1131, h:1400},
+  {img:'recente-16.jpg', f:'microcimento', cat:'Microcimentos', t:'Varanda em microcimento',                     w:1179, h:1146},
+  {img:'recente-01.jpg', f:'microcimento', cat:'Microcimentos', t:'Casa de banho em microcimento',               w:1054, h:1400},
+  {img:'recente-04.jpg', f:'microcimento', cat:'Microcimentos', t:'Bases de duche em microcimento',              w:1054, h:1400},
+  {img:'recente-05.jpg', f:'microcimento', cat:'Microcimentos', t:'Lavatório e nicho em microcimento',           w:1054, h:1400},
+  {img:'recente-02.jpg', f:'microcimento', cat:'Microcimentos', t:'Lavatório em microcimento',                   w:1054, h:1400},
+  {img:'recente-03.jpg', f:'microcimento', cat:'Microcimentos', t:'Móvel de apoio em microcimento',              w:1050, h:1400},
+  {img:'recente-06.jpg', f:'microcimento', cat:'Microcimentos', t:'Paredes e nicho em microcimento',             w:1054, h:1400},
+  {img:'recente-15.jpg', f:'coberturas',   cat:'Coberturas',    t:'Cobertura: impermeabilização e armadura',     w:1400, h:788},
+  {img:'recente-11.jpg', f:'pladur',       cat:'Pladur',        t:'Parede técnica com recuperador de calor',     w:1400, h:788},
+  {img:'recente-07.jpg', f:'pladur',       cat:'Pladur',        t:'Instalação de recuperador e tetos em pladur', w:788,  h:1400},
+  {img:'recente-08.jpg', f:'pladur',       cat:'Pladur',        t:'Teto em pladur com clarabóia',                w:788,  h:1400},
+  {img:'recente-09.jpg', f:'pladur',       cat:'Pladur',        t:'Teto em pladur hidrófugo',                    w:1400, h:788},
+  {img:'recente-10.jpg', f:'pladur',       cat:'Pladur',        t:'Tetos falsos em pladur',                      w:788,  h:1400}
 ];
 
 /* ─────────── construtores de blocos ─────────── */
@@ -608,18 +616,42 @@ document.querySelectorAll('[data-marquee]').forEach(function(el){
   el.innerHTML = one + one;
 });
 
+/* filtros das obras recentes (por categoria) */
+document.querySelectorAll('[data-gfilters]').forEach(function(bar){
+  bar.innerHTML = '<button class="fbtn on" data-gf="all">Todas</button>'
+    + RECFILTROS.map(function(r){ return '<button class="fbtn" data-gf="' + r.f + '">' + esc(r.lbl) + '</button>'; }).join('');
+});
+
 /* galeria de obras recentes (fotografias reais) + lightbox */
 document.querySelectorAll('[data-recentes]').forEach(function(el){
   el.innerHTML = RECENTES.map(function(o, i){
-    return '<figure class="gtile" tabindex="0" role="button" aria-label="Ampliar: ' + esc(o.t) + '" data-i="' + i + '">'
+    return '<figure class="gtile" tabindex="0" role="button" aria-label="Ampliar: ' + esc(o.t) + '" data-i="' + i + '" data-f="' + o.f + '">'
       + '<img src="img/' + o.img + '" alt="' + esc(o.t) + '" width="' + o.w + '" height="' + o.h + '" loading="lazy" decoding="async">'
       + '<span class="cat">' + esc(o.cat) + '</span>'
       + '<figcaption>' + esc(o.t) + '</figcaption></figure>';
   }).join('');
 });
+
 (function(){
-  var gals = document.querySelectorAll('[data-recentes]');
-  if(!gals.length) return;
+  var gal = document.querySelector('[data-recentes]');
+  if(!gal) return;
+  var tiles = Array.prototype.slice.call(gal.querySelectorAll('.gtile'));
+  var filtro = 'all';
+
+  /* filtragem por categoria */
+  document.querySelectorAll('[data-gfilters]').forEach(function(bar){
+    bar.addEventListener('click', function(e){
+      var b = e.target.closest('.fbtn'); if(!b) return;
+      bar.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      filtro = b.getAttribute('data-gf');
+      tiles.forEach(function(t){
+        t.classList.toggle('hide', !(filtro === 'all' || t.getAttribute('data-f') === filtro));
+      });
+    });
+  });
+
+  /* lightbox, a navegar apenas entre as fotos visíveis */
   var box = document.createElement('div');
   box.className = 'lbx';
   box.innerHTML = '<button class="x" aria-label="Fechar">×</button>'
@@ -628,32 +660,38 @@ document.querySelectorAll('[data-recentes]').forEach(function(el){
     + '<img alt=""><div class="cap"></div>';
   document.body.appendChild(box);
   var bImg = box.querySelector('img'), bCap = box.querySelector('.cap'), idx = 0;
+  function visiveis(){ return RECENTES.map(function(_, i){ return i; }).filter(function(i){ return filtro === 'all' || RECENTES[i].f === filtro; }); }
   function show(i){
-    idx = (i + RECENTES.length) % RECENTES.length;
+    var vis = visiveis(); if(!vis.length) return;
+    var pos = vis.indexOf(i); if(pos === -1) pos = 0;
+    idx = i;
     var o = RECENTES[idx];
     bImg.src = 'img/' + o.img; bImg.alt = o.t;
     bCap.innerHTML = '<b>' + esc(o.t) + '</b> · ' + esc(o.cat);
   }
+  function step(dir){
+    var vis = visiveis(); if(!vis.length) return;
+    var pos = vis.indexOf(idx); if(pos === -1) pos = 0;
+    show(vis[(pos + dir + vis.length) % vis.length]);
+  }
   function open(i){ show(i); box.classList.add('on'); document.body.style.overflow = 'hidden'; }
   function close(){ box.classList.remove('on'); document.body.style.overflow = ''; }
-  gals.forEach(function(g){
-    g.addEventListener('click', function(e){
-      var t = e.target.closest('.gtile'); if(t) open(+t.getAttribute('data-i'));
-    });
-    g.addEventListener('keydown', function(e){
-      var t = e.target.closest('.gtile');
-      if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); open(+t.getAttribute('data-i')); }
-    });
+  gal.addEventListener('click', function(e){
+    var t = e.target.closest('.gtile'); if(t) open(+t.getAttribute('data-i'));
+  });
+  gal.addEventListener('keydown', function(e){
+    var t = e.target.closest('.gtile');
+    if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); open(+t.getAttribute('data-i')); }
   });
   box.querySelector('.x').addEventListener('click', close);
-  box.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); show(idx - 1); });
-  box.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); show(idx + 1); });
+  box.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
+  box.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
   box.addEventListener('click', function(e){ if(e.target === box) close(); });
   document.addEventListener('keydown', function(e){
     if(!box.classList.contains('on')) return;
     if(e.key === 'Escape') close();
-    else if(e.key === 'ArrowLeft') show(idx - 1);
-    else if(e.key === 'ArrowRight') show(idx + 1);
+    else if(e.key === 'ArrowLeft') step(-1);
+    else if(e.key === 'ArrowRight') step(1);
   });
 })();
 
@@ -696,7 +734,11 @@ document.querySelectorAll('[data-tests]').forEach(function(el){
 document.querySelectorAll('[data-blog]').forEach(function(el){
   el.innerHTML = ARTIGOS.map(function(a){
     return '<article class="art"><div class="ai"><img src="img/' + a.img + '" alt="' + esc(a.t) + '" width="900" height="506" loading="lazy" decoding="async"></div>'
-      + '<div class="ab"><span class="cat">' + esc(a.cat) + '</span><h4>' + esc(a.t) + '</h4><p>' + esc(a.d) + '</p></div></article>';
+      + '<div class="ab"><span class="cat">' + esc(a.cat) + '</span><h4>' + esc(a.t) + '</h4><p>' + esc(a.d) + '</p>'
+      + '<details class="nota"><summary><span class="mais">Saber mais</span><span class="menos">Fechar</span>'
+      + '<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>'
+      + '<div class="nota-corpo">' + a.nota + '</div></details>'
+      + '</div></article>';
   }).join('');
 });
 

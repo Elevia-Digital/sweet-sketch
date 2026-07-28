@@ -25,13 +25,21 @@ img/            fotografias e ficheiros do logótipo
 marca/          kit do logótipo para uso fora do site
 ```
 
-O `index.html` contém três vistas comutadas por JavaScript:
+O `index.html` é uma página única que carrega diretamente o site (versão completa). Secções, por ordem:
 
-1. **Seletor** — as duas propostas lado a lado, com preços
-2. **Versão Base**, 850 € — hero, serviços, portefólio de 6 obras, obras recentes, testemunhos, contacto
-3. **Versão Completa**, 1.200 € — tudo o da Base mais portefólio de 12 obras filtrável, comparador antes/depois, caso de estudo, secção de imobiliário, processo, blog
+1. **Hero** — carrossel de especialidades
+2. **01 / Especialidades** — serviços
+3. **02 / Portefólio** — 12 obras filtráveis (imagens ilustrativas)
+4. **03 / Obras recentes** — **fotografias reais**, filtráveis por categoria
+5. **04 / Antes e depois** — comparador interativo
+6. **05 / Como trabalhamos** — processo
+7. **06 / Clientes** — testemunhos (exemplo)
+8. **07 / Artigos** — 3 artigos, cada um com uma nota expansível de ajuda
+9. **08 / Pedir orçamento** — formulário e contactos
 
-A secção **Obras recentes** (`RECENTES`) é a única com **fotografias reais** das obras da Sweet Sketch: galeria masonry com lightbox, categorizada por microcimento, pladur, isolamento, coberturas e madeira. O portefólio acima ainda usa imagens ilustrativas.
+A secção **Obras recentes** (`RECENTES`) é a única com **fotografias reais** das obras da Sweet Sketch: galeria masonry com lightbox, separada por categoria (`RECFILTROS`): Madeiras, Isolamentos, Microcimentos, Coberturas e Pladur. O portefólio acima ainda usa imagens ilustrativas.
+
+Cada artigo (`ARTIGOS`) tem um campo `nota` com HTML de ajuda, mostrado num `<details>` "Saber mais".
 
 Todo o restante conteúdo é gerado a partir de tabelas de dados no topo do `<script>` (`SLIDES`, `SERVICOS`, `OBRAS`, `RECENTES`, `PROCESSO`, `TESTS`, `ARTIGOS`, `MARQUEE`). Para mudar textos ou fotografias, edite essas tabelas, não o HTML.
 
