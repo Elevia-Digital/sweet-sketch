@@ -314,20 +314,39 @@ button{font-family:inherit}
 .sticky-cta .btn{flex:1;padding:13px}
 @media(max-width:760px){.view.active .sticky-cta{display:flex}}
 
-/* obras recentes: galeria de fotografias reais (masonry) */
+/* obras recentes: álbuns por categoria */
 .reais-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#2C6A2C;background:#E6F2E6;border:1px solid #CDE6CD;padding:6px 12px;border-radius:999px;margin-top:14px}
 .reais-badge svg{color:#2C6A2C}
+.albuns{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.albuns{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.albuns{grid-template-columns:1fr}}
+.album{position:relative;display:block;border:0;padding:0;border-radius:8px;overflow:hidden;cursor:pointer;background:var(--ink);aspect-ratio:4/3;isolation:isolate;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.album:hover{transform:translateY(-5px);box-shadow:0 28px 52px -32px rgba(29,34,42,.6)}
+.album img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transition:transform .7s var(--ease)}
+.album:hover img{transform:scale(1.07)}
+.album-ov{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:22px;text-align:left;background:linear-gradient(0deg,rgba(15,19,24,.92) 6%,rgba(15,19,24,.3) 55%,transparent)}
+.album-lbl{font-family:var(--display);font-weight:700;font-size:1.4rem;letter-spacing:-.02em;color:#fff}
+.album-n{margin-top:3px;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#C7CFD8}
+.album-cta{margin-top:13px;font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-x);display:inline-flex;align-items:center;gap:7px}
+.album-cta .arw{transition:transform .22s var(--ease)}
+.album:hover .album-cta .arw{transform:translateX(4px)}
+/* vista das fotos de uma categoria */
+.album-fotos{animation:notaIn .35s var(--ease)}
+.album-bar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:24px}
+.album-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--ui);font-weight:600;font-size:.9rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:3px;padding:10px 18px;cursor:pointer;transition:border-color .2s var(--ease),transform .2s var(--ease)}
+.album-back:hover{border-color:var(--ink);transform:translateX(-3px)}
+.album-back .ar{font-size:1.05rem;line-height:1}
+.album-titulo{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--ink);letter-spacing:-.01em}
+/* galeria masonry das fotos da categoria */
 .gal{columns:4 250px;column-gap:16px}
 @media(max-width:900px){.gal{columns:3 220px}}
 @media(max-width:560px){.gal{columns:2 150px;column-gap:12px}}
 .gtile{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:16px;position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--paper-3);cursor:zoom-in;display:block;width:100%}
-.gtile.hide{display:none}
 @media(max-width:560px){.gtile{margin-bottom:12px}}
 .gtile img{width:100%;height:auto;display:block;transition:transform .6s var(--ease)}
 .gtile:hover img{transform:scale(1.05)}
 .gtile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:26px 14px 12px;font-size:.82rem;font-weight:500;color:#fff;background:linear-gradient(0deg,rgba(18,22,28,.86),transparent);opacity:0;transform:translateY(6px);transition:opacity .28s var(--ease),transform .28s var(--ease)}
 .gtile:hover figcaption,.gtile:focus-visible figcaption{opacity:1;transform:none}
-.gtile .cat{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(18,22,28,.6);border:1px solid rgba(255,255,255,.22);padding:3px 8px;border-radius:2px;backdrop-filter:blur(3px)}
 /* lightbox */
 .lbx{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;background:rgba(12,14,18,.92);backdrop-filter:blur(4px);padding:24px}
 .lbx.on{display:flex}
@@ -407,10 +426,16 @@ button{font-family:inherit}
   </div></section>
 
   <section class="sec alt" id="p-recentes"><div class="wrap">
-    <div class="sh"><span class="k">03 / Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Ao contrário do portefólio acima, estas são reais: microcimento, pladur, isolamento pelo exterior, coberturas e estruturas de madeira, tudo feito pela equipa da Sweet Sketch.</p>
+    <div class="sh"><span class="k">03 / Obras recentes</span><h2>Fotografias das nossas obras.</h2><p>Ao contrário do portefólio acima, estas são reais. Escolha uma categoria para ver as fotografias.</p>
       <span class="reais-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotografias reais de obra</span></div>
-    <div class="filters" data-gfilters></div>
-    <div class="gal" data-recentes></div>
+    <div class="albuns" data-albuns></div>
+    <div class="album-fotos" data-album hidden>
+      <div class="album-bar">
+        <button class="album-back" type="button"><span class="ar">←</span> Todas as categorias</button>
+        <h3 class="album-titulo"></h3>
+      </div>
+      <div class="gal" data-recentes></div>
+    </div>
   </div></section>
 
   <section class="sec"><div class="wrap">
@@ -566,11 +591,11 @@ var MARQUEE = ['Construção de edifícios','Remodelações e pinturas','Instala
 
 /* Fotografias REAIS de obra da Sweet Sketch, agrupadas por categoria. w/h reais evitam saltos de layout. */
 var RECFILTROS = [
-  {f:'madeira',      lbl:'Madeiras'},
-  {f:'isolamento',   lbl:'Isolamentos'},
-  {f:'microcimento', lbl:'Microcimentos'},
-  {f:'coberturas',   lbl:'Coberturas'},
-  {f:'pladur',       lbl:'Pladur'}
+  {f:'madeira',      lbl:'Madeiras',      cover:'recente-18.jpg'},
+  {f:'isolamento',   lbl:'Isolamentos',   cover:'recente-13.jpg'},
+  {f:'microcimento', lbl:'Microcimentos', cover:'recente-14.jpg'},
+  {f:'coberturas',   lbl:'Coberturas',    cover:'recente-15.jpg'},
+  {f:'pladur',       lbl:'Pladur',        cover:'recente-11.jpg'}
 ];
 var RECENTES = [
   {img:'recente-18.jpg', f:'madeira',      cat:'Madeiras',      t:'Estrutura de madeira com cobertura de colmo', w:1400, h:788},
@@ -601,42 +626,51 @@ document.querySelectorAll('[data-marquee]').forEach(function(el){
   el.innerHTML = one + one;
 });
 
-/* filtros das obras recentes (por categoria) */
-document.querySelectorAll('[data-gfilters]').forEach(function(bar){
-  bar.innerHTML = '<button class="fbtn on" data-gf="all">Todas</button>'
-    + RECFILTROS.map(function(r){ return '<button class="fbtn" data-gf="' + r.f + '">' + esc(r.lbl) + '</button>'; }).join('');
-});
-
-/* galeria de obras recentes (fotografias reais) + lightbox */
-document.querySelectorAll('[data-recentes]').forEach(function(el){
-  el.innerHTML = RECENTES.map(function(o, i){
-    return '<figure class="gtile" tabindex="0" role="button" aria-label="Ampliar: ' + esc(o.t) + '" data-i="' + i + '" data-f="' + o.f + '">'
-      + '<img src="img/' + o.img + '" alt="' + esc(o.t) + '" width="' + o.w + '" height="' + o.h + '" loading="lazy" decoding="async">'
-      + '<span class="cat">' + esc(o.cat) + '</span>'
-      + '<figcaption>' + esc(o.t) + '</figcaption></figure>';
-  }).join('');
-});
-
+/* obras recentes: álbuns por categoria (capa clicável) + galeria + lightbox */
 (function(){
-  var gal = document.querySelector('[data-recentes]');
-  if(!gal) return;
-  var tiles = Array.prototype.slice.call(gal.querySelectorAll('.gtile'));
-  var filtro = 'all';
+  var albunsWrap = document.querySelector('[data-albuns]');
+  var fotosWrap  = document.querySelector('[data-album]');
+  var gal        = document.querySelector('[data-recentes]');
+  if(!albunsWrap || !fotosWrap || !gal) return;
+  var titulo = fotosWrap.querySelector('.album-titulo');
+  var atual = [];   /* fotos da categoria aberta (subconjunto de RECENTES) */
 
-  /* filtragem por categoria */
-  document.querySelectorAll('[data-gfilters]').forEach(function(bar){
-    bar.addEventListener('click', function(e){
-      var b = e.target.closest('.fbtn'); if(!b) return;
-      bar.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
-      b.classList.add('on');
-      filtro = b.getAttribute('data-gf');
-      tiles.forEach(function(t){
-        t.classList.toggle('hide', !(filtro === 'all' || t.getAttribute('data-f') === filtro));
-      });
-    });
+  /* capas das categorias */
+  albunsWrap.innerHTML = RECFILTROS.map(function(r){
+    var n = RECENTES.filter(function(o){ return o.f === r.f; }).length;
+    return '<button class="album" type="button" data-f="' + r.f + '" aria-label="Ver ' + esc(r.lbl) + '">'
+      + '<img src="img/' + r.cover + '" alt="' + esc(r.lbl) + '" loading="lazy" decoding="async">'
+      + '<span class="album-ov"><span class="album-lbl">' + esc(r.lbl) + '</span>'
+      + '<span class="album-n">' + n + (n === 1 ? ' fotografia' : ' fotografias') + '</span>'
+      + '<span class="album-cta">Ver <span class="arw">→</span></span></span></button>';
+  }).join('');
+
+  function abrir(f, lbl){
+    atual = RECENTES.filter(function(o){ return o.f === f; });
+    gal.innerHTML = atual.map(function(o, pos){
+      return '<figure class="gtile" tabindex="0" role="button" aria-label="Ampliar: ' + esc(o.t) + '" data-pos="' + pos + '">'
+        + '<img src="img/' + o.img + '" alt="' + esc(o.t) + '" width="' + o.w + '" height="' + o.h + '" loading="lazy" decoding="async">'
+        + '<figcaption>' + esc(o.t) + '</figcaption></figure>';
+    }).join('');
+    titulo.textContent = lbl + ' · ' + atual.length + (atual.length === 1 ? ' fotografia' : ' fotografias');
+    albunsWrap.hidden = true;
+    fotosWrap.hidden = false;
+  }
+  function voltar(){
+    fotosWrap.hidden = true;
+    albunsWrap.hidden = false;
+    gal.innerHTML = '';
+  }
+
+  albunsWrap.addEventListener('click', function(e){
+    var b = e.target.closest('.album'); if(!b) return;
+    var f = b.getAttribute('data-f');
+    var r = RECFILTROS.filter(function(x){ return x.f === f; })[0];
+    if(r) abrir(f, r.lbl);
   });
+  fotosWrap.querySelector('.album-back').addEventListener('click', voltar);
 
-  /* lightbox, a navegar apenas entre as fotos visíveis */
+  /* lightbox, a navegar apenas dentro da categoria aberta */
   var box = document.createElement('div');
   box.className = 'lbx';
   box.innerHTML = '<button class="x" aria-label="Fechar">×</button>'
@@ -644,39 +678,32 @@ document.querySelectorAll('[data-recentes]').forEach(function(el){
     + '<button class="nav next" aria-label="Seguinte">›</button>'
     + '<img alt=""><div class="cap"></div>';
   document.body.appendChild(box);
-  var bImg = box.querySelector('img'), bCap = box.querySelector('.cap'), idx = 0;
-  function visiveis(){ return RECENTES.map(function(_, i){ return i; }).filter(function(i){ return filtro === 'all' || RECENTES[i].f === filtro; }); }
-  function show(i){
-    var vis = visiveis(); if(!vis.length) return;
-    var pos = vis.indexOf(i); if(pos === -1) pos = 0;
-    idx = i;
-    var o = RECENTES[idx];
+  var bImg = box.querySelector('img'), bCap = box.querySelector('.cap'), pos = 0;
+  function show(p){
+    if(!atual.length) return;
+    pos = (p + atual.length) % atual.length;
+    var o = atual[pos];
     bImg.src = 'img/' + o.img; bImg.alt = o.t;
     bCap.innerHTML = '<b>' + esc(o.t) + '</b> · ' + esc(o.cat);
   }
-  function step(dir){
-    var vis = visiveis(); if(!vis.length) return;
-    var pos = vis.indexOf(idx); if(pos === -1) pos = 0;
-    show(vis[(pos + dir + vis.length) % vis.length]);
-  }
-  function open(i){ show(i); box.classList.add('on'); document.body.style.overflow = 'hidden'; }
+  function open(p){ show(p); box.classList.add('on'); document.body.style.overflow = 'hidden'; }
   function close(){ box.classList.remove('on'); document.body.style.overflow = ''; }
   gal.addEventListener('click', function(e){
-    var t = e.target.closest('.gtile'); if(t) open(+t.getAttribute('data-i'));
+    var t = e.target.closest('.gtile'); if(t) open(+t.getAttribute('data-pos'));
   });
   gal.addEventListener('keydown', function(e){
     var t = e.target.closest('.gtile');
-    if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); open(+t.getAttribute('data-i')); }
+    if(t && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); open(+t.getAttribute('data-pos')); }
   });
   box.querySelector('.x').addEventListener('click', close);
-  box.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
-  box.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); step(1); });
+  box.querySelector('.prev').addEventListener('click', function(e){ e.stopPropagation(); show(pos - 1); });
+  box.querySelector('.next').addEventListener('click', function(e){ e.stopPropagation(); show(pos + 1); });
   box.addEventListener('click', function(e){ if(e.target === box) close(); });
   document.addEventListener('keydown', function(e){
     if(!box.classList.contains('on')) return;
     if(e.key === 'Escape') close();
-    else if(e.key === 'ArrowLeft') step(-1);
-    else if(e.key === 'ArrowRight') step(1);
+    else if(e.key === 'ArrowLeft') show(pos - 1);
+    else if(e.key === 'ArrowRight') show(pos + 1);
   });
 })();
 

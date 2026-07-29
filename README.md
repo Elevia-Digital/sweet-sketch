@@ -37,7 +37,7 @@ O `index.html` é uma página única que carrega diretamente o site (versão com
 8. **07 / Artigos** — 3 artigos, cada um com uma nota expansível de ajuda
 9. **08 / Pedir orçamento** — formulário e contactos
 
-A secção **Obras recentes** (`RECENTES`) é a única com **fotografias reais** das obras da Sweet Sketch: galeria masonry com lightbox, separada por categoria (`RECFILTROS`): Madeiras, Isolamentos, Microcimentos, Coberturas e Pladur. O portefólio acima ainda usa imagens ilustrativas.
+A secção **Obras recentes** (`RECENTES`) é a única com **fotografias reais** das obras da Sweet Sketch. Está organizada por categoria (`RECFILTROS`): Madeiras, Isolamentos, Microcimentos, Coberturas e Pladur. Mostra primeiro um cartão-capa por categoria (imagem ilustrativa + contagem); ao clicar, abre a galeria masonry dessa categoria, com lightbox que navega só dentro dela e um botão "Todas as categorias" para voltar. O portefólio acima ainda usa imagens ilustrativas.
 
 Cada artigo (`ARTIGOS`) tem um campo `nota` com HTML de ajuda, mostrado num `<details>` "Saber mais".
 
